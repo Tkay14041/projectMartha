@@ -82,6 +82,20 @@
 		    $( "#minPrice" ).val($( "#slider-range" ).slider( "values", 0 ));
 		    $( "#maxPrice" ).val($( "#slider-range" ).slider( "values", 1 ));
 		  });
+		  
+		  if( navigator.geolocation )
+{
+	// 現在位置を取得できる場合の処理
+	alert( "あなたの端末では、現在位置を取得することができます。" ) ;
+}
+
+// Geolocation APIに対応していない
+else
+{
+	// 現在位置を取得できない場合の処理
+	alert( "あなたの端末では、現在位置を取得できません。" ) ;
+}
+
 		</script>
 
 	</head>
@@ -90,6 +104,8 @@
 		<div id="map"></div>
 		
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">検索</button>
+		<!--<div id="slider-range"></div>-->
+		<!--<input type="number" id="minPrice">-->
 		
 		<div class="modal fade" id="myModal2">
 		  <div class="modal-dialog">
@@ -194,10 +210,50 @@
 		
 		<script>
 			//地図初期設定
-			var CenterLat = 35.661627;
-			var CenterLng = 139.700159;
+			// var CenterLat = 35.661627;
+			// var CenterLng = 139.700159;
+			
+			var centerLat = 0;
+			var centerLng = 0;
+			var map = "";
+			
+			navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+			
+			function successCallback(position) {
+				centerLat = position.coords.latitude;
+				centerLng = position.coords.longitude;
+				
+				map = L.map('map').setView([centerLat, centerLng], 15);
+				//OSMレイヤー追加
+				L.tileLayer(
+					'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+					{
+						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+						maxZoom: 19,
+						minZoom: 15
+					}
+				).addTo(map);
+			}
+			
+			function errorCallback() {
+				alert( "位置情報取得失敗したでござる！" ) ;
+				centerLat = 35.661627;
+				centerLng = 139.700159;
+				
+				map = L.map('map').setView([centerLat, centerLng], 15);
+				//OSMレイヤー追加
+				L.tileLayer(
+					'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+					{
+						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
+						maxZoom: 19,
+						minZoom: 15
+					}
+				).addTo(map);
+			}
+			
 		
-			var map = L.map('map').setView([CenterLat, CenterLng], 15);
+			
  
 			//OSMレイヤー追加
 			L.tileLayer(
@@ -216,6 +272,9 @@
 			//     ],
 			//     routeWhileDragging: true
 			// }).addTo(map);
+			
+
+			
 			
 		</script>
 		
@@ -265,6 +324,19 @@
 						marker.on('mouseover', function (e) {
 				            this.openPopup();
 				        });
+				    
+				 //   var price = "<?php echo $item->price ?>";
+					// var minPrice = document.getElementById('minPrice').value;
+					
+					// console.log(minPrice);
+					
+					// if (price < minPrice) {
+					// 	map.removeOverlay(marker);
+					// }
+					
+						
+		  
+						
 				</script>
 			@endforeach
 		@endif

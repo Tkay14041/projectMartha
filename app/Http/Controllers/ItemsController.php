@@ -32,10 +32,10 @@ class ItemsController extends Controller
         $query = Item::select('*', \DB::raw('COUNT(*) as count'))->join('shops', 'items.shop_id', '=', 'shops.id')->groupBy(\DB::raw('shop_id'));
        
         //search by price
-        $query->where('price', '>=', $minPrice);
-        if ($maxPrice < 100000) {
-            $query->where('price', '<=', $maxPrice);
-        } 
+        // $query->where('price', '>=', $minPrice);
+        // if ($maxPrice < 100000) {
+        //     $query->where('price', '<=', $maxPrice);
+        // } 
         
         //search by sex
         if($sex != null) {
