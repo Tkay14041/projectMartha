@@ -15,6 +15,13 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 		<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 		<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		
+		<!--icon-->
+		<link rel="stylesheet" href="css/leaflet.extra-markers.min.css" />
+    	<script src="js/leaflet.extra-markers.min.js"></script>
+    	
+    	<!--fontawesome-->
+    	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         
         <link 
         	rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
@@ -42,6 +49,13 @@
 				width: 100%;
 				height: 90%;
 			}
+			
+			.leaflet-marker-icon-color-blue   { -webkit-filter: hue-rotate( 30deg); filter: hue-rotate( 30deg); }
+			.leaflet-marker-icon-color-pink   { -webkit-filter: hue-rotate( 90deg); filter: hue-rotate( 90deg); }
+			.leaflet-marker-icon-color-red    { -webkit-filter: hue-rotate(150deg); filter: hue-rotate(150deg); }
+			.leaflet-marker-icon-color-yellow { -webkit-filter: hue-rotate(210deg); filter: hue-rotate(210deg); }
+			.leaflet-marker-icon-color-green  { -webkit-filter: hue-rotate(270deg); filter: hue-rotate(270deg); }
+			.leaflet-marker-icon-color-alua   { -webkit-filter: hue-rotate(330deg); filter: hue-rotate(330deg); }
 			
 			.leaflet-popup-content-wrapper {
 				width: 268px;
@@ -83,18 +97,18 @@
 		    $( "#maxPrice" ).val($( "#slider-range" ).slider( "values", 1 ));
 		  });
 		  
-		  if( navigator.geolocation )
-{
-	// 現在位置を取得できる場合の処理
-	alert( "あなたの端末では、現在位置を取得することができます。" ) ;
-}
-
-// Geolocation APIに対応していない
-else
-{
-	// 現在位置を取得できない場合の処理
-	alert( "あなたの端末では、現在位置を取得できません。" ) ;
-}
+		 // if( navigator.geolocation )
+			// {
+			// 	// 現在位置を取得できる場合の処理
+			// 	alert( "あなたの端末では、現在位置を取得することができます。" ) ;
+			// }
+			
+			// // Geolocation APIに対応していない
+			// else
+			// {
+			// 	// 現在位置を取得できない場合の処理
+			// 	alert( "あなたの端末では、現在位置を取得できません。" ) ;
+			// }
 
 		</script>
 
@@ -215,13 +229,18 @@ else
 			
 			var centerLat = 0;
 			var centerLng = 0;
+			var currentLat = 0;
+			var currentLng = 0;
 			var map = "";
 			
 			navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 			
 			function successCallback(position) {
-				centerLat = position.coords.latitude;
-				centerLng = position.coords.longitude;
+				// centerLat = position.coords.latitude;
+				// centerLng = position.coords.longitude;
+				
+				centerLat = 35.661627;
+				centerLng = 139.700159;
 				
 				map = L.map('map').setView([centerLat, centerLng], 15);
 				//OSMレイヤー追加
@@ -250,6 +269,24 @@ else
 						minZoom: 15
 					}
 				).addTo(map);
+			}
+			
+			var watchId = navigator.geolocation.watchPosition( successFunc , errorFunc);
+			
+			function successFunc(position) {
+				currentLat = position.coords.latitude;
+				currentLng = position.coords.longitude;
+				
+				var youMarker = L.marker([currentLat, currentLng]).addTo(map);
+				L.DomUtil.addClass( youMarker._icon, 'leaflet-marker-icon-color-green' );
+			}
+			
+			function errorFunc(){
+				currentLat = 35.661627;
+				currentLng = 139.700159;
+				
+				var youMarker = L.marker([currentLat, currentLng]).addTo(map);
+				L.DomUtil.addClass( youMarker._icon, 'leaflet-marker-icon-color-green' );
 			}
 			
 		
@@ -313,6 +350,13 @@ else
 				<script>
 					var lat1 = "<?php echo $item->lat ?>";
 					var lng1 = "<?php echo $item->lng ?>";
+					
+					// var redMarker = L.ExtraMarkers.icon({
+					//     icon: 'fa-coffee',
+					//     markerColor: 'red',
+					//     shape: 'square',
+					//     prefix: 'fa'
+					//   });
 					
 					//マーカー with bounce
 						var bounce = { bounceOnAdd:true };
