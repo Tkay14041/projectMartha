@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 		<script src="https://code.jquery.com/jquery-1.8.3.js"></script>
 		<script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 		
 		<!--icon-->
 		<link rel="stylesheet" href="css/leaflet.extra-markers.min.css" />
@@ -46,7 +47,7 @@
 				margin: 0px;
 			}
 			#map {
-				width: 100%;
+				width: 75%;
 				height: 90%;
 			}
 			
@@ -121,6 +122,7 @@
 		<!--<div id="slider-range"></div>-->
 		<!--<input type="number" id="minPrice">-->
 		
+		
 		<div class="modal fade" id="myModal2">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -129,191 +131,14 @@
 		        <h4 class="modal-title">検索フォーム</h4>
 		      </div>
 		      <div class="modal-body">
-		      	{!! Form::open(['route' => 'items.search', 'method' => 'post']) !!}
-		      		 <div class="form-group">
-		      		 	<p>
-						  <label for="amount">Price:</label>
-						</p>
-						<p>
-							{!! Form::label('price[]', 'minPrice') !!}
-							￥{!! Form::number('minPrice', '0', ['id' => 'minPrice', 'style' => 'border: 0; color: #f6931f; font-weight: bold']) !!}
-						</p>
-						<p>
-							{!! Form::label('price[]', 'maxPrice') !!}
-							￥{!! Form::number('maxPrice', '0', ['id' => 'maxPrice', 'style' => 'border: 0; color: #f6931f; font-weight: bold']) !!}
-						</p>
-					<div id="slider-range"></div>
-					  </div>
-                      <div class="form-group">
-                      	<p>Sex</p>
-                      		{!! Form::radio('sex[]','W') !!}
-							{!! Form::label('sex[]','womens') !!}
-							{!! Form::radio('sex[]','M') !!}
-							{!! Form::label('sex[]','mens') !!}
-							{!! Form::radio('sex[]','W/M') !!}
-							{!! Form::label('sex[]','unisex') !!}
-					  </div>
-					  <div class="form-group">
-					  	<p>Genre</p>
-					  		{!! Form::radio('genre[]','O') !!}
-					  		{!! Form::label('genre[]','Outer') !!}
-					  		{!! Form::radio('genre[]','G') !!}
-					  		{!! Form::label('genre[]','Bag') !!}
-					  		{!! Form::radio('genre[]','T') !!}
-					  		{!! Form::label('genre[]','Tops') !!}
-					  		{!! Form::radio('genre[]','B') !!}
-					  		{!! Form::label('genre[]','Bottoms') !!}
-					  		{!! Form::radio('genre[]','D') !!}
-					  		{!! Form::label('genre[]','Dress') !!}
-					  		{!! Form::radio('genre[]','A') !!}
-					  		{!! Form::label('genre[]','Accessory') !!}
-					  </div>
-					  <div class="form-group">
-					  	<p>Color</p>
-					  		{!! Form::radio('color[]','赤') !!}
-					  		{!! Form::label('color[]','red') !!}
-					  		{!! Form::radio('color[]','黒') !!}
-					  		{!! Form::label('color[]','black') !!}
-					  		{!! Form::radio('color[]','白') !!}
-					  		{!! Form::label('color[]','white') !!}
-					  		{!! Form::radio('color[]','ベージュ') !!}
-					  		{!! Form::label('color[]','beige') !!}
-					  		{!! Form::radio('color[]','ネイビー') !!}
-					  		{!! Form::label('color[]','navy') !!}
-					  		{!! Form::radio('color[]','緑・カーキ') !!}
-					  		{!! Form::label('color[]','green') !!}
-					  		{!! Form::radio('color[]','ブルー') !!}
-					  		{!! Form::label('color[]','blue') !!}
-					  		{!! Form::radio('color[]','イエロー') !!}
-					  		{!! Form::label('color[]','yellow') !!}
-					  		{!! Form::radio('color[]','ピンク') !!}
-					  		{!! Form::label('color[]','pink') !!}
-					  		{!! Form::radio('color[]','シルバー') !!}
-					  		{!! Form::label('color[]','silver') !!}
-					  		{!! Form::radio('color[]','ゴールド') !!}
-					  		{!! Form::label('color[]','gold') !!}
-					  		{!! Form::radio('color[]','ブラウン') !!}
-					  		{!! Form::label('color[]','braun') !!}
-					  		{!! Form::radio('color[]','柄物') !!}
-					  		{!! Form::label('color[]','gara') !!}
-					  		{!! Form::radio('color[]','グレー') !!}
-					  		{!! Form::label('color[]','gray') !!}
-					  </div>
-					  <div class="form-group">
-					  	<p>Scene</p>
-					  		{!! Form::radio('scene[]','フォーマル') !!}
-					  		{!! Form::label('scene[]','formal') !!}
-							{!! Form::radio('scene[]','ビジカジ') !!}
-							{!! Form::label('scene[]','business casual') !!}
-							{!! Form::radio('scene[]','カジュアル') !!}
-							{!! Form::label('scene[]','casual') !!}
-							{!! Form::radio('scene[]','デート') !!}
-					  		{!! Form::label('scene[]','date') !!}
-					  		{!! Form::radio('scene[]','結婚式') !!}
-					  		{!! Form::label('scene[]','wedding') !!}
-					  		{!! Form::radio('scene[]','ビーチ') !!}
-					  		{!! Form::label('scene[]','beach') !!}
-					  </div>
-							{!! Form::submit('search', ['class' => 'btn btn-primary btn-block']) !!}
-                      </div>
-                {!! Form::close() !!}
+		      	@include('parts.search_form')
 		      </div>
 		    </div>
 		  </div>
 		</div>
 		
-		<script>
-			//地図初期設定
-			// var CenterLat = 35.661627;
-			// var CenterLng = 139.700159;
-			
-			var centerLat = 0;
-			var centerLng = 0;
-			var currentLat = 0;
-			var currentLng = 0;
-			var map = "";
-			
-			navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-			
-			function successCallback(position) {
-				// centerLat = position.coords.latitude;
-				// centerLng = position.coords.longitude;
-				
-				centerLat = 35.661627;
-				centerLng = 139.700159;
-				
-				map = L.map('map').setView([centerLat, centerLng], 15);
-				//OSMレイヤー追加
-				L.tileLayer(
-					'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-					{
-						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-						maxZoom: 19,
-						minZoom: 15
-					}
-				).addTo(map);
-			}
-			
-			function errorCallback() {
-				alert( "位置情報取得失敗したでござる！" ) ;
-				centerLat = 35.661627;
-				centerLng = 139.700159;
-				
-				map = L.map('map').setView([centerLat, centerLng], 15);
-				//OSMレイヤー追加
-				L.tileLayer(
-					'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-					{
-						attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-						maxZoom: 19,
-						minZoom: 15
-					}
-				).addTo(map);
-			}
-			
-			var watchId = navigator.geolocation.watchPosition( successFunc , errorFunc);
-			
-			function successFunc(position) {
-				currentLat = position.coords.latitude;
-				currentLng = position.coords.longitude;
-				
-				var youMarker = L.marker([currentLat, currentLng]).addTo(map);
-				L.DomUtil.addClass( youMarker._icon, 'leaflet-marker-icon-color-green' );
-			}
-			
-			function errorFunc(){
-				currentLat = 35.661627;
-				currentLng = 139.700159;
-				
-				var youMarker = L.marker([currentLat, currentLng]).addTo(map);
-				L.DomUtil.addClass( youMarker._icon, 'leaflet-marker-icon-color-green' );
-			}
-			
+		@include('map.setting')
 		
-			
- 
-			//OSMレイヤー追加
-			L.tileLayer(
-				'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-				{
-					attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>',
-					maxZoom: 19,
-					minZoom: 15
-				}
-			).addTo(map);
-			
-			// L.Routing.control({
-			//     waypoints: [
-			//         L.latLng(35.676683,139.7558916),
-			//         L.latLng(35.6852696,139.7630878)
-			//     ],
-			//     routeWhileDragging: true
-			// }).addTo(map);
-			
-
-			
-			
-		</script>
 		
 		@if(!empty($items) && $items == true)
 			@foreach($items as $item)
@@ -351,6 +176,27 @@
 					var lat1 = "<?php echo $item->lat ?>";
 					var lng1 = "<?php echo $item->lng ?>";
 					
+					var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
+					var latDiff = Math.abs(lat1 - currentLat);
+					var lngDiff = Math.abs(lng1 - currentLng);
+					 
+					// 緯度1度辺りの距離（km）
+					var lat1d = (er * 2 * Math.PI) / 360;
+					// 緯度の2地点間の距離（km）
+					var a2 = latDiff * lat1d;
+					 
+					// 現在位置の緯度を基準とした半径（km）
+					var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
+					// 経度1度辺りの距離（km）
+					var lng1d = (latr * 2 * Math.PI) / 360;
+					// 経度の2地点間の距離（km）
+					var b2 = lngDiff * lng1d;
+					 
+					// 直角二等辺三角形の斜辺として距離（km）を算出
+					var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
+					
+					console.log(distance);
+					
 					// var redMarker = L.ExtraMarkers.icon({
 					//     icon: 'fa-coffee',
 					//     markerColor: 'red',
@@ -362,28 +208,59 @@
 						var bounce = { bounceOnAdd:true };
 						var marker = L.marker([lat1, lng1], bounce)
 							.bindPopup(
-								'<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
-								+ '<h4>¥<?php echo $item->price ?>stock:<?php echo $item->count ?></h4>')
+								"<h4><?php echo $item->shop_name ?></h4>"
+								+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
+								+ "<h4><?php echo $item->item_name ?></h2>"
+								+ "<h4>¥<?php echo $item->price ?></h4>"
+								+ '<h5>hit items:<?php echo $item->count ?></h5>'
+								+ '<span>distance from your location: </span>'
+								+ distance
+								+ '<span>m</span>')
 							.addTo(map);
 						marker.on('mouseover', function (e) {
 				            this.openPopup();
 				        });
-				    
-				 //   var price = "<?php echo $item->price ?>";
-					// var minPrice = document.getElementById('minPrice').value;
-					
-					// console.log(minPrice);
-					
-					// if (price < minPrice) {
-					// 	map.removeOverlay(marker);
-					// }
-					
-						
-		  
 						
 				</script>
 			@endforeach
 		@endif
+		
+		<script>
+			var a = "<?php echo $A[0]->count ?>";
+			var b = "<?php echo $B[0]->count ?>";
+			var c = "<?php echo $C[0]->count ?>";
+			var d = "<?php echo $D[0]->count ?>";
+			var e = "<?php echo $E[0]->count ?>";
+			var f = "<?php echo $F[0]->count ?>";
+			var g = "<?php echo $G[0]->count ?>";
+			var h = "<?php echo $H[0]->count ?>";
+			var i = "<?php echo $I[0]->count ?>";
+			var j = "<?php echo $J[0]->count ?>";
+			var k = "<?php echo $K[0]->count ?>";
+			var l = "<?php echo $L[0]->count ?>";
+			var m = "<?php echo $M[0]->count ?>";
+			var n = "<?php echo $N[0]->count ?>";
+			var o = "<?php echo $O[0]->count ?>";
+			var p = "<?php echo $P[0]->count ?>";
+			var q = "<?php echo $Q[0]->count ?>";
+			var r = "<?php echo $R[0]->count ?>";
+			var s = "<?php echo $S[0]->count ?>";
+			var t = "<?php echo $T[0]->count ?>";
+			var u = "<?php echo $U[0]->count ?>";
+			
+			var ctx = document.getElementById('myChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+			  type: 'line',
+			  data: {
+			    labels: ['0', '5,000', '10,000', '15,000', '20,000', '25,000', '30,000', '35,000', '40,000', '45,000', '50,000', '55,000', '60,000', '65,000', '70,000', '75,000', '80,000', '85,000', '90,000', '95,000', '100,000+'],
+			    datasets: [{
+			      label: 'items',
+			      data: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u],
+			      backgroundColor: "rgba(153,255,51,0.4)",
+			    }]
+			  }
+			});
+		</script>
 		
 	</body>
 </html>
