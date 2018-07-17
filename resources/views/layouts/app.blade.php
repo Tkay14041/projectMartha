@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Martha</title>
-
+		
+		<!--bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -45,10 +46,19 @@
 				height: 100%;
 				padding: 0px;
 				margin: 0px;
+				float: left;
 			}
+			
 			#map {
 				width: 75%;
 				height: 90%;
+				float: left;
+			}
+			
+			#sidebar {
+				width: 25%;
+				height: 90%;
+				display: inline-block;
 			}
 			
 			.leaflet-marker-icon-color-blue   { -webkit-filter: hue-rotate( 30deg); filter: hue-rotate( 30deg); }
@@ -77,6 +87,10 @@
 			
 			.stockItem {
 				display: inline-block;
+			}
+			
+			.id2 img {
+				width: 100px;
 			}
 			
 		</style>
@@ -117,6 +131,7 @@
     
 	<body>
 		<div id="map"></div>
+		<div id="sidebar"></div>
 		
 		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">検索</button>
 		<!--<div id="slider-range"></div>-->
@@ -165,6 +180,7 @@
 				      	<p>{{ $item->address }}</p>
 				      	<p>{{ $item->tel }}</p>
 				      	<p>{{ $item->description }}</p>
+				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>')">Like</button>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
@@ -205,22 +221,36 @@
 					//   });
 					
 					//マーカー with bounce
-						var bounce = { bounceOnAdd:true };
-						var marker = L.marker([lat1, lng1], bounce)
-							.bindPopup(
-								"<h4><?php echo $item->shop_name ?></h4>"
-								+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
-								+ "<h4><?php echo $item->item_name ?></h2>"
-								+ "<h4>¥<?php echo $item->price ?></h4>"
-								+ '<h5>hit items:<?php echo $item->count ?></h5>'
-								+ '<span>distance from your location: </span>'
-								+ distance
-								+ '<span>m</span>')
-							.addTo(map);
-						marker.on('mouseover', function (e) {
-				            this.openPopup();
-				        });
-						
+					var bounce = { bounceOnAdd:true };
+					var marker = L.marker([lat1, lng1], bounce)
+						.bindPopup(
+							"<h4><?php echo $item->shop_name ?></h4>"
+							+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
+							+ "<h4><?php echo $item->item_name ?></h2>"
+							+ "<h4>¥<?php echo $item->price ?></h4>"
+							+ '<h5>hit items:<?php echo $item->count ?></h5>'
+							+ '<span>distance from your location: </span>'
+							+ distance
+							+ '<span>m</span>')
+						.addTo(map);
+					marker.on('mouseover', function (e) {
+				        this.openPopup();
+				    });
+
+					function addElement(shopname, image) {
+						var element = document.createElement('div'); 
+						element.className = "id1";
+					    element.innerHTML = shopname;
+					    
+					    var imageElement = document.createElement('div');
+					    imageElement.className = "id2";
+					    imageElement.innerHTML = "<img src='ITEM FOLDER/" + image + "'>";
+					
+					    var objBody = document.getElementById("sidebar");
+					    objBody.appendChild(element);
+					    objBody.appendChild(imageElement);
+					}
+					
 				</script>
 			@endforeach
 		@endif

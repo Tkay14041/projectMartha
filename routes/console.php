@@ -15,4 +15,4 @@ use Illuminate\Foundation\Inspiring;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->descriDe('Display an inspiring quote');
+})->describe('Display an inspiring quote');
