@@ -146,7 +146,9 @@
 		        <h4 class="modal-title">検索フォーム</h4>
 		      </div>
 		      <div class="modal-body">
+		      	
 		      	@include('parts.search_form')
+		      	
 		      </div>
 		    </div>
 		  </div>
@@ -180,7 +182,7 @@
 				      	<p>{{ $item->address }}</p>
 				      	<p>{{ $item->tel }}</p>
 				      	<p>{{ $item->description }}</p>
-				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>')">Like</button>
+				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $item->price ?>')">Like</button>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
@@ -237,60 +239,48 @@
 				        this.openPopup();
 				    });
 
-					function addElement(shopname, image) {
-						var element = document.createElement('div'); 
-						element.className = "id1";
-					    element.innerHTML = shopname;
-					    
-					    var imageElement = document.createElement('div');
-					    imageElement.className = "id2";
-					    imageElement.innerHTML = "<img src='ITEM FOLDER/" + image + "'>";
-					
-					    var objBody = document.getElementById("sidebar");
-					    objBody.appendChild(element);
-					    objBody.appendChild(imageElement);
+					function addElement(shopname, image, id, openinghours, price) {
+					 
+						 var table = document.createElement('TABLE');
+						 table.id = 'table' + id;
+						 
+						 var tbody = document.createElement('TBODY');
+						 table.appendChild(tbody);
+						 
+						 var tr = document.createElement('TR');
+						 
+						 var td1 = document.createElement('TD');
+						 var DOM_img = document.createElement('img');
+						 DOM_img.src = 'ITEM FOLDER/' + image;
+						 td1.appendChild(DOM_img);
+						 
+						 var td2 = document.createElement('TD');
+						 td2.appendChild(document.createTextNode(shopname));
+						 td2.appendChild(document.createElement('br'));
+						 td2.appendChild(document.createTextNode(openinghours));
+						 td2.appendChild(document.createElement('br'));
+						 td2.appendChild(document.createTextNode(price));
+						 
+						 var td3 = document.createElement('TD');
+						 var button = document.createElement('button');
+						 button.innerHTML = '×';
+						 td3.appendChild(button);
+						 
+						 tr.appendChild(td1);
+						 tr.appendChild(td2);
+						 tr.appendChild(td3);
+						 tbody.appendChild(tr);
+						 
+						 var objBody = document.getElementById("sidebar");
+						 objBody.appendChild(table);
 					}
 					
 				</script>
 			@endforeach
 		@endif
 		
-		<script>
-			var a = "<?php echo $A[0]->count ?>";
-			var b = "<?php echo $B[0]->count ?>";
-			var c = "<?php echo $C[0]->count ?>";
-			var d = "<?php echo $D[0]->count ?>";
-			var e = "<?php echo $E[0]->count ?>";
-			var f = "<?php echo $F[0]->count ?>";
-			var g = "<?php echo $G[0]->count ?>";
-			var h = "<?php echo $H[0]->count ?>";
-			var i = "<?php echo $I[0]->count ?>";
-			var j = "<?php echo $J[0]->count ?>";
-			var k = "<?php echo $K[0]->count ?>";
-			var l = "<?php echo $L[0]->count ?>";
-			var m = "<?php echo $M[0]->count ?>";
-			var n = "<?php echo $N[0]->count ?>";
-			var o = "<?php echo $O[0]->count ?>";
-			var p = "<?php echo $P[0]->count ?>";
-			var q = "<?php echo $Q[0]->count ?>";
-			var r = "<?php echo $R[0]->count ?>";
-			var s = "<?php echo $S[0]->count ?>";
-			var t = "<?php echo $T[0]->count ?>";
-			var u = "<?php echo $U[0]->count ?>";
-			
-			var ctx = document.getElementById('myChart').getContext('2d');
-			var myChart = new Chart(ctx, {
-			  type: 'line',
-			  data: {
-			    labels: ['0', '5,000', '10,000', '15,000', '20,000', '25,000', '30,000', '35,000', '40,000', '45,000', '50,000', '55,000', '60,000', '65,000', '70,000', '75,000', '80,000', '85,000', '90,000', '95,000', '100,000+'],
-			    datasets: [{
-			      label: 'items',
-			      data: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u],
-			      backgroundColor: "rgba(153,255,51,0.4)",
-			    }]
-			  }
-			});
-		</script>
+		@include('parts.graph')
+		
 		
 	</body>
 </html>
