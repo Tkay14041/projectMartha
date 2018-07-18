@@ -17,4 +17,6 @@
 
 Route::get('/', 'ItemsController@setting');
 
-Route::post('/', 'ItemsController@search')->name('items.search');
+Route::post('items', 'ItemsController@search')->name('items.search');
+
+Route::post('favorite', 'ItemsController@favorite')->name('items.favorite');

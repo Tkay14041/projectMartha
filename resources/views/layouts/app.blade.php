@@ -124,6 +124,10 @@
 			// 	// 現在位置を取得できない場合の処理
 			// 	alert( "あなたの端末では、現在位置を取得できません。" ) ;
 			// }
+			
+			$(function() {
+			    $('#sidebar').sortable();
+			});
 
 		</script>
 
@@ -158,6 +162,8 @@
 		
 		
 		@if(!empty($items) && $items == true)
+		{{ $jsonItems=json_encode($items) }}
+		{{ var_dump($jsonItems) }}
 			@foreach($items as $item)
 				
 				<!-- モーダルウィンドウの中身 -->
@@ -213,8 +219,6 @@
 					// 直角二等辺三角形の斜辺として距離（km）を算出
 					var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
 					
-					console.log(distance);
-					
 					// var redMarker = L.ExtraMarkers.icon({
 					//     icon: 'fa-coffee',
 					//     markerColor: 'red',
@@ -223,6 +227,7 @@
 					//   });
 					
 					//マーカー with bounce
+					var id = "marker" + "<?php echo $item->id ?>";
 					var bounce = { bounceOnAdd:true };
 					var marker = L.marker([lat1, lng1], bounce)
 						.bindPopup(
@@ -238,11 +243,21 @@
 					marker.on('mouseover', function (e) {
 				        this.openPopup();
 				    });
+				    
+				    // change the color of markers
+				    // L.DomUtil.addClass( marker._icon, 'leaflet-marker-icon-color-green' );
+				    L.DomUtil.addClass( marker._icon, id );
+				    
+				    
 
 					function addElement(shopname, image, id, openinghours, price) {
-					 
+						
+						 var objBody = document.getElementById("sidebar");
+						 
 						 var table = document.createElement('TABLE');
 						 table.id = 'table' + id;
+						 table.setAttribute('onmouseover', 'mouseover()');
+						 table.setAttribute('onmouseout', 'mouseout()');
 						 
 						 var tbody = document.createElement('TBODY');
 						 table.appendChild(tbody);
@@ -264,15 +279,30 @@
 						 var td3 = document.createElement('TD');
 						 var button = document.createElement('button');
 						 button.innerHTML = '×';
+						 
+						 button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
 						 td3.appendChild(button);
+						 
+						 var form = document.createElement('input');
+						 form.type = "hidden";
+						 form.name = "favorite[]";
+						 form.value = id;
 						 
 						 tr.appendChild(td1);
 						 tr.appendChild(td2);
 						 tr.appendChild(td3);
 						 tbody.appendChild(tr);
+						 tbody.appendChild(form);
 						 
-						 var objBody = document.getElementById("sidebar");
-						 objBody.appendChild(table);
+						 objBody.appendChild(table);	 
+					}
+					
+					function mouseover() {
+					 	L.DomUtil.addClass( marker._icon, 'leaflet-marker-icon-color-green' );
+					}
+					
+					function mouseout() {
+						L.DomUtil.removeClass( marker._icon, 'leaflet-marker-icon-color-green' );
 					}
 					
 				</script>

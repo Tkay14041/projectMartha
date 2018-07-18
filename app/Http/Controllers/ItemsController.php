@@ -317,4 +317,11 @@ class ItemsController extends Controller
                 'U' => $U,
             ]);
     }
+    
+    function favorite(Request $request)
+    {
+        $favorites = $request->input('favorite');
+        $data = [];
+        var_dump($favorites);
+    }
 }
