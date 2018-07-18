@@ -128,6 +128,8 @@
 			$(function() {
 			    $('#sidebar').sortable();
 			});
+			
+			
 
 		</script>
 
@@ -162,8 +164,6 @@
 		
 		
 		@if(!empty($items) && $items == true)
-		{{ $jsonItems=json_encode($items) }}
-		{{ var_dump($jsonItems) }}
 			@foreach($items as $item)
 				
 				<!-- モーダルウィンドウの中身 -->
@@ -227,26 +227,26 @@
 					//   });
 					
 					//マーカー with bounce
-					var id = "marker" + "<?php echo $item->id ?>";
-					var bounce = { bounceOnAdd:true };
-					var marker = L.marker([lat1, lng1], bounce)
-						.bindPopup(
-							"<h4><?php echo $item->shop_name ?></h4>"
-							+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
-							+ "<h4><?php echo $item->item_name ?></h2>"
-							+ "<h4>¥<?php echo $item->price ?></h4>"
-							+ '<h5>hit items:<?php echo $item->count ?></h5>'
-							+ '<span>distance from your location: </span>'
-							+ distance
-							+ '<span>m</span>')
-						.addTo(map);
-					marker.on('mouseover', function (e) {
-				        this.openPopup();
-				    });
+					// var id = "marker" + "<?php echo $item->id ?>";
+					// var bounce = { bounceOnAdd:true };
+					// var marker = L.marker([lat1, lng1], bounce)
+					// 	.bindPopup(
+					// 		"<h4><?php echo $item->shop_name ?></h4>"
+					// 		+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
+					// 		+ "<h4><?php echo $item->item_name ?></h2>"
+					// 		+ "<h4>¥<?php echo $item->price ?></h4>"
+					// 		+ '<h5>hit items:<?php echo $item->count ?></h5>'
+					// 		+ '<span>distance from your location: </span>'
+					// 		+ distance
+					// 		+ '<span>m</span>')
+					// 	.addTo(map);
+					// marker.on('mouseover', function (e) {
+				 //       this.openPopup();
+				 //   });
 				    
 				    // change the color of markers
 				    // L.DomUtil.addClass( marker._icon, 'leaflet-marker-icon-color-green' );
-				    L.DomUtil.addClass( marker._icon, id );
+				    // L.DomUtil.addClass( marker._icon, id );
 				    
 				    
 
@@ -311,6 +311,35 @@
 		
 		@include('parts.graph')
 		
+		<script>
+			var bounce = { bounceOnAdd:true };
+			"<?php $jsonItems = json_encode($items); ?>"
+			var data = JSON.parse(`<?php echo  $jsonItems; ?>`);
+			// console.log(data);
+			
+			var markers = {};
+			for (var i = 0; i < data.length; i++) {
+				var information = data[i];
+				markers[information.id] = L.marker([information.lat, information.lng], bounce)
+				.bindPopup(
+					"<h4>" + information.shopname + "</h4>"
+					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + information.id + '"><img class="itemPic" src="ITEM FOLDER/' + information.image_path + '"></button>'
+					+ "<h4>" + information.item_name + "</h2>"
+					+ "<h4>¥" + information.price + "</h4>"
+					+ '<h5>hit items:' + information.count + '</h5>'
+					+ '<span>distance from your location: </span>'
+					+ distance
+					+ '<span>m</span>')
+				.addTo(map);
+				
+			}
+			markers[85].on('mouseover', function (e) {
+					this.openPopup();
+				});
+			
+			
+			
+		</script>
 		
 	</body>
 </html>
