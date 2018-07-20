@@ -57,7 +57,6 @@
 			
 			#sidebar {
 				width: 100%;
-				/*height: 100vh;*/
 				display: inline-block;
 				overflow: scroll;
 			}
@@ -118,6 +117,11 @@
 			
 			.id2 img {
 				width: 100px;
+			}
+			
+			#slider-range {
+				width: 94%;
+			    margin-left: 5%;
 			}
 			
 			/*
@@ -284,7 +288,10 @@
 			// }
 			
 			$(function() {
-			    $('#sidebar').sortable();
+			    $('#sidebar').sortable({
+			    	handle: '.sideImg',
+			    	axis: 'y'
+			    });
 			});
 			
 			//ここから、ポップサイドバーのジャバスクリプト
@@ -463,7 +470,7 @@
 				      			<p>{{ $menu->meal }}<span>￥{{ $menu->price }}</span></p>
 				      		@endif
 				      	@endforeach
-				      	<button onclick="addElement('<?php echo $restaurant->name ?>', '<?php echo $restaurant->image_path ?>', '<?php echo $restaurant->id ?>', '<?php echo $restaurant->openinghours ?>')">Like</button>
+				      	<button onclick="addElement('<?php echo $restaurant->name ?>', '<?php echo $restaurant->image_path ?>', '<?php echo $restaurant->id ?>', '<?php echo $restaurant->openinghours ?>', '<?php echo $restaurant->tel ?>')">Like</button>
 				      </div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
@@ -658,7 +665,7 @@
 
 			}
 			
-			function addElement(name, image, id, openinghours) {
+			function addElement(name, image, id, openinghours, tel) {
 				if (document.getElementById('table' + id) === null) {
 					var objBody = document.getElementById("sidebar");
 						 
@@ -682,6 +689,8 @@
 							 
 					var td2 = document.createElement('TD');
 					td2.appendChild(document.createTextNode(name));
+					td2.appendChild(document.createElement('br'));
+					td2.appendChild(document.createTextNode(tel));
 					td2.appendChild(document.createElement('br'));
 					td2.appendChild(document.createTextNode(openinghours));
 					td2.setAttribute('onmouseover', 'mouseover(' + id + ')');
@@ -714,11 +723,11 @@
 			}
 					
 			function mouseover(id) {
-				L.DomUtil.addClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-pink');
+				L.DomUtil.addClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-red');
 			}
 					
 			function mouseout(id) {
-				L.DomUtil.removeClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-pink');
+				L.DomUtil.removeClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-red');
 			}
 			
 		</script>
