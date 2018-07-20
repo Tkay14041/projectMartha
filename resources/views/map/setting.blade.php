@@ -96,7 +96,6 @@
 			//     ],
 			//     routeWhileDragging: true
 			// }).addTo(map);
-			
 
 			
 			

@@ -50,15 +50,42 @@
 			}
 			
 			#map {
-				width: 75%;
-				height: 90%;
+				width: 100%;
+				height: 100vh;
 				float: left;
 			}
 			
 			#sidebar {
-				width: 25%;
-				height: 90%;
+				width: 100%;
+				/*height: 100vh;*/
 				display: inline-block;
+				overflow: scroll;
+			}
+			
+			.sidetable {
+				width: 100%;
+			}
+			
+			.sideImg {
+				height: 160px;
+			}
+			
+			.td1 {
+				width: 160px;
+				text-align: center;
+			}
+			
+			.td2 {
+				width: 180px;
+			}
+			
+			.td3 {
+				width: 24px;
+			}
+			
+			.ui-state-default{
+				width:100%;
+				height:auto;
 			}
 			
 			.leaflet-marker-icon-color-blue   { -webkit-filter: hue-rotate( 30deg); filter: hue-rotate( 30deg); }
@@ -92,6 +119,137 @@
 			.id2 img {
 				width: 100px;
 			}
+			
+			/*
+			Copyright (c)  created year unknown, Robert Abba @robabba
+			Released under the MIT license
+			http://opensource.org/licenses/mit-license.php
+			*/
+			
+			body{
+				  min-height: 100vh;
+				  margin: 0 auto;
+				  background-color:#ffffff;
+				  z-index:500;
+				  overflow-x: hidden;
+				  overflow-y: hidden;
+				}
+				
+				.side-bar[data-position="left"]{
+				  position: absolute;
+				  top: 50%;
+				  left: 0;
+				  -webkit-transform: translateY(-50%);
+				  -ms-transform: translateY(-50%);
+				  transform: translateY(-50%);
+				  min-height: 100%;
+				  width: 64px;
+				  background-color: #43a;
+				  border-top-right-radius: 6px;
+				  border-bottom-right-radius: 6px;
+				  z-index:500;
+				}
+				
+				.side-bar[data-position="right"]{
+				  position: absolute;
+				  right: 400px;
+				  top: 50%;
+				  -webkit-transform: translateY(-50%);
+				  -ms-transform: translateY(-50%);
+				  transform: translateY(-50%);
+				  min-height: 100%;
+				  width: 64px;
+				  background-color: #333;
+				}
+				
+				div.item {
+				  color: white;
+				  height: 64px;
+				  width: 64px;
+				  background-color: #444;
+				  line-height: 64px;
+				  text-align: center;
+				  font-size: 20px;
+				}
+				
+				div.item.bottom {
+				  position: absolute;
+				  bottom: 10%;
+				}
+				
+				div.heading {
+				  font-size: 16px;
+				  font-family: 'Lato', sans-serif;
+				  color: white;
+				  height: 44px;
+				  line-height: 44px;
+				  font-weight: 700;
+				  padding: 10px;
+				  background-color: #333;
+				}
+				
+				div.item:hover {
+				  background-color: #6761A8 ;
+				  cursor: pointer;
+				}
+				
+				div.side-panel {
+				  z-index: 999;
+				  right: -400px;
+				  position: absolute;
+				  min-width: 400px;
+				  min-height: 100%;
+				  background-color: #fff;
+				  display: inline-block;
+				  width: 0;
+				}
+				
+				div.side-panel.open{
+				  animation-name: sidebar-open;
+				  animation-duration: .25s;
+				  right: 0;
+				}
+				
+				div.side-panel.close{
+				  animation-name: sidebar-close;
+				  animation-duration: .25s;
+				  right: -400px;
+				}
+				
+				.close {
+					opacity: 0.6;
+				}
+				
+				/* Keyframes */
+				@keyframes sidebar-open {
+				  0% {
+				    right: -400px;
+				  }
+				  
+				  100% {
+				    right: 0;
+				  }
+				}
+				
+				@keyframes sidebar-close {
+				  0% {
+				    right: 0;
+				  }
+				  
+				  100% {
+				    right: -400px;
+				  }
+				}
+				
+				/*img {*/
+				/*    width: 100%;*/
+				/*    position: absolute;*/
+				/*}*/
+				
+				.side-panel {
+				    z-index: 9999;
+				    position: relative;
+				}
 			
 		</style>
 		
@@ -129,31 +287,114 @@
 			    $('#sidebar').sortable();
 			});
 			
+			//ここから、ポップサイドバーのジャバスクリプト
+	        let EventHandler = {
+			  ShowHideSideBar: function(){
+			    if (document.getElementById("side-panel").className.indexOf("open") !== -1){
+			      document.getElementById("side-panel").className = "side-panel"
+			      document.getElementById("side-panel").className += " close"
+			      document.getElementById('show_hide').childNodes[0].className = "fa fa-angle-double-left"
+			      return
+			    }
+			    
+			    document.getElementById("side-panel").className = "side-panel"
+			    document.getElementById("side-panel").className += " open"
+			    document.getElementById('show_hide').childNodes[0].className = "fa fa-angle-double-right"
+			  }
+			}
 			
-
+			window.onload = () => {
+			  document.getElementById('show_hide').onclick = EventHandler.ShowHideSideBar
+			}
+			//pop side bar java scriptおわり
+			
+			jQuery(function($) {
+				var boxHeight = $('#map').height();
+				$('#sidebar').css('height', boxHeight + 'px');
+			});
+			
 		</script>
 
 	</head>
     
 	<body>
 		<div id="map"></div>
-		<div id="sidebar"></div>
 		
-		<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">検索</button>
-		<!--<div id="slider-range"></div>-->
-		<!--<input type="number" id="minPrice">-->
 		
+		
+		<!--
+		Copyright (c) created year unknown, Robert Abba @robabba
+		Released under the MIT license
+		http://opensource.org/licenses/mit-license.php
+		-->	
+
+		 <div class="side-panel" id="side-panel">
+		 	<div id="sidepanel-heading" class="heading">
+		    	<!--<link rel="stylesheet" href="index.css">-->
+		        <span id="content-heading">USER LIKES</span>
+		    </div>
+		            
+		  <!--<iframe id="content-frame" style="height: 90%; border:none; display: block; width: 400px; position: absolute;"> </iframe>-->
+		  
+		  <div id="sidebar">
+					<!--<div class=search>-->
+					<!--<button type="button" class="btn btn-default glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2"></button></div>-->
+		  
+		  <div data-position="right" class="side-bar">
+		    <div class="item" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2">F</i></div>
+		    <div class="item" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal3">R</i></div>
+		    <div class="item"><i class="fa fa-user"></i></div>
+		    <div class="item"><i class="fa fa-users"></i></div>
+		    <div class="item"><i class="fa fa-folder-o"></i></div>
+		    <div class="item"><i class="fa fa-file-code-o"></i></div>
+		
+		    <div class="item bottom" id="show_hide"><i class="fa fa-angle-double-left"></i></div>
+		  </div>
+		  <!--<script src="index.js"></script>-->
+		  
+		</div>
+		</div>
+		            
+		
+		<!--<ここからポップアップサイドバーおわり>-->
+		
+		
+		
+		
+		
+		
+		
+		<!--<div id="sidebar"></div>-->
+		
+		<!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Fassion</button>-->
+		<!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3">Restaurant</button>-->
 		
 		<div class="modal fade" id="myModal2">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">検索フォーム</h4>
+		        <h4 class="modal-title">Fassion</h4>
 		      </div>
 		      <div class="modal-body">
 		      	
-		      	@include('parts.search_form')
+		      	@include('parts.fassion_search')
+		      	
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="modal fade" id="myModal3">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Restaurant</h4>
+		      </div>
+		      <div class="modal-body">
+		      	
+		      	@include('parts.restaurant_search')
 		      	
 		      </div>
 		    </div>
@@ -186,7 +427,7 @@
 					      	@endif
 				      	@endforeach
 				      	<p>{{ $item->address }}</p>
-				      	<p>{{ $item->tel }}</p>
+				      	<p>Tel: {{ $item->tel }}</p>
 				      	<p>{{ $item->description }}</p>
 				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $item->price ?>')">Like</button>
 				      </div>
@@ -197,113 +438,40 @@
 				  </div>
 				</div>
 				<script>
-					var lat1 = "<?php echo $item->lat ?>";
-					var lng1 = "<?php echo $item->lng ?>";
 					
-					var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
-					var latDiff = Math.abs(lat1 - currentLat);
-					var lngDiff = Math.abs(lng1 - currentLng);
-					 
-					// 緯度1度辺りの距離（km）
-					var lat1d = (er * 2 * Math.PI) / 360;
-					// 緯度の2地点間の距離（km）
-					var a2 = latDiff * lat1d;
-					 
-					// 現在位置の緯度を基準とした半径（km）
-					var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
-					// 経度1度辺りの距離（km）
-					var lng1d = (latr * 2 * Math.PI) / 360;
-					// 経度の2地点間の距離（km）
-					var b2 = lngDiff * lng1d;
-					 
-					// 直角二等辺三角形の斜辺として距離（km）を算出
-					var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
-					
-					// var redMarker = L.ExtraMarkers.icon({
-					//     icon: 'fa-coffee',
-					//     markerColor: 'red',
-					//     shape: 'square',
-					//     prefix: 'fa'
-					//   });
-					
-					//マーカー with bounce
-					// var id = "marker" + "<?php echo $item->id ?>";
-					// var bounce = { bounceOnAdd:true };
-					// var marker = L.marker([lat1, lng1], bounce)
-					// 	.bindPopup(
-					// 		"<h4><?php echo $item->shop_name ?></h4>"
-					// 		+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#<?php echo $item->id ?>"><img class="itemPic" src="ITEM FOLDER/<?php echo $item->image_path ?>"></button>'
-					// 		+ "<h4><?php echo $item->item_name ?></h2>"
-					// 		+ "<h4>¥<?php echo $item->price ?></h4>"
-					// 		+ '<h5>hit items:<?php echo $item->count ?></h5>'
-					// 		+ '<span>distance from your location: </span>'
-					// 		+ distance
-					// 		+ '<span>m</span>')
-					// 	.addTo(map);
-					// marker.on('mouseover', function (e) {
-				 //       this.openPopup();
-				 //   });
-				    
-				    // change the color of markers
-				    // L.DomUtil.addClass( marker._icon, 'leaflet-marker-icon-color-green' );
-				    // L.DomUtil.addClass( marker._icon, id );
-				    
-				    
-
-					function addElement(shopname, image, id, openinghours, price) {
-						
-						 var objBody = document.getElementById("sidebar");
-						 
-						 var table = document.createElement('TABLE');
-						 table.id = 'table' + id;
-						 table.setAttribute('onmouseover', 'mouseover()');
-						 table.setAttribute('onmouseout', 'mouseout()');
-						 
-						 var tbody = document.createElement('TBODY');
-						 table.appendChild(tbody);
-						 
-						 var tr = document.createElement('TR');
-						 
-						 var td1 = document.createElement('TD');
-						 var DOM_img = document.createElement('img');
-						 DOM_img.src = 'ITEM FOLDER/' + image;
-						 td1.appendChild(DOM_img);
-						 
-						 var td2 = document.createElement('TD');
-						 td2.appendChild(document.createTextNode(shopname));
-						 td2.appendChild(document.createElement('br'));
-						 td2.appendChild(document.createTextNode(openinghours));
-						 td2.appendChild(document.createElement('br'));
-						 td2.appendChild(document.createTextNode(price));
-						 
-						 var td3 = document.createElement('TD');
-						 var button = document.createElement('button');
-						 button.innerHTML = '×';
-						 
-						 button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
-						 td3.appendChild(button);
-						 
-						 var form = document.createElement('input');
-						 form.type = "hidden";
-						 form.name = "favorite[]";
-						 form.value = id;
-						 
-						 tr.appendChild(td1);
-						 tr.appendChild(td2);
-						 tr.appendChild(td3);
-						 tbody.appendChild(tr);
-						 tbody.appendChild(form);
-						 
-						 objBody.appendChild(table);	 
-					}
-					
-					function mouseover() {
-					 	L.DomUtil.addClass( marker._icon, 'leaflet-marker-icon-color-green' );
-					}
-					
-					function mouseout() {
-						L.DomUtil.removeClass( marker._icon, 'leaflet-marker-icon-color-green' );
-					}
+				</script>
+			@endforeach
+		@endif
+		
+		<!--restaurant-->
+		@if(!empty($restaurants) && $restaurants == true)
+			@foreach($restaurants as $restaurant)
+				
+				<!-- モーダルウィンドウの中身 -->
+				<div class="modal fade" id="<?php echo $restaurant->id ?>">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					        <h4 class="modal-title">
+					        	{{ $restaurant->name }}
+					        </h4>
+				      </div>
+				      <div class="modal-body">
+				      	@foreach($menus as $menu)
+				      		@if($restaurant->id == $menu->restaurant_id)
+				      			<p>{{ $menu->meal }}<span>￥{{ $menu->price }}</span></p>
+				      		@endif
+				      	@endforeach
+				      	<button onclick="addElement('<?php echo $restaurant->name ?>', '<?php echo $restaurant->image_path ?>', '<?php echo $restaurant->id ?>', '<?php echo $restaurant->openinghours ?>')">Like</button>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+				       </div>
+				    </div>
+				  </div>
+				</div>
+				<script>
 					
 				</script>
 			@endforeach
@@ -311,35 +479,250 @@
 		
 		@include('parts.graph')
 		
+		@if(!empty($items) && $items == true)
 		<script>
 			var bounce = { bounceOnAdd:true };
 			"<?php $jsonItems = json_encode($items); ?>"
-			var data = JSON.parse(`<?php echo  $jsonItems; ?>`);
+			var shopData = JSON.parse(`<?php echo  $jsonItems; ?>`);
 			// console.log(data);
 			
-			var markers = {};
-			for (var i = 0; i < data.length; i++) {
-				var information = data[i];
-				markers[information.id] = L.marker([information.lat, information.lng], bounce)
+			var shopMarkers = {};
+			for (var i = 0; i < shopData.length; i++) {
+				var shopInfo = shopData[i];
+				shopMarkers[shopInfo.id] = L.marker([shopInfo.lat, shopInfo.lng], bounce)
 				.bindPopup(
-					"<h4>" + information.shopname + "</h4>"
-					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + information.id + '"><img class="itemPic" src="ITEM FOLDER/' + information.image_path + '"></button>'
-					+ "<h4>" + information.item_name + "</h2>"
-					+ "<h4>¥" + information.price + "</h4>"
-					+ '<h5>hit items:' + information.count + '</h5>'
-					+ '<span>distance from your location: </span>'
-					+ distance
-					+ '<span>m</span>')
+					"<h4>" + shopInfo.shopname + "</h4>"
+					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + shopInfo.id + '"><img class="itemPic" src="ITEM FOLDER/' + shopInfo.image_path + '"></button>'
+					+ "<h4>" + shopInfo.item_name + "</h2>"
+					+ "<h4>¥" + shopInfo.price + "</h4>"
+					+ '<h5>hit items:' + shopInfo.count + '</h5>'
+					// + '<span>distance from your location: </span>'
+					// + distance
+					// + '<span>m</span>'
+					)
 				.addTo(map);
-				
-			}
-			markers[85].on('mouseover', function (e) {
+				shopMarkers[shopInfo.id].on('mouseover', function (e) {
 					this.openPopup();
 				});
+				
+				// var lat1 = information.lat;
+				// var lng1 = information.lng;
+				// console.log(information.id);
+				// console.log(information.lat);
+				// console.log(lat1);
+				// console.log(information.lng);
+				// console.log(lng1);
+				
+					
+				// var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
+				// var latDiff = Math.abs(lat1 - currentLat);
+				// var lngDiff = Math.abs(lng1 - currentLng);
+					 
+				// // 緯度1度辺りの距離（km）
+				// var lat1d = (er * 2 * Math.PI) / 360;
+				// // 緯度の2地点間の距離（km）
+				// var a2 = latDiff * lat1d;
+					 
+				// // 現在位置の緯度を基準とした半径（km）
+				// var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
+				// // 経度1度辺りの距離（km）
+				// var lng1d = (latr * 2 * Math.PI) / 360;
+				// // 経度の2地点間の距離（km）
+				// var b2 = lngDiff * lng1d;
+				
+				// // 直角二等辺三角形の斜辺として距離（km）を算出
+				// var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
+
+			}
 			
-			
+			function addElement(shopname, image, id, openinghours, price) {
+				if (document.getElementById('table' + id) === null) {
+						
+					var objBody = document.getElementById("sidebar");
+							 
+					var table = document.createElement('TABLE');
+					table.id = 'table' + id;
+					table.className = 'sidetable';
+							 
+					var tbody = document.createElement('TBODY');
+					table.appendChild(tbody);
+							 
+					var tr = document.createElement('TR');
+							 
+					var td1 = document.createElement('TD');
+					var DOM_img = document.createElement('img');
+					DOM_img.src = 'ITEM FOLDER/' + image;
+					DOM_img.className = 'sideImg';
+					td1.appendChild(DOM_img);
+					td1.setAttribute('onmouseover', 'mouseover(' + id + ')');
+					td1.setAttribute('onmouseout', 'mouseout(' + id + ')');
+					td1.className = 'td1';
+							 
+					var td2 = document.createElement('TD');
+					td2.appendChild(document.createTextNode(shopname));
+					td2.appendChild(document.createElement('br'));
+					td2.appendChild(document.createTextNode(openinghours));
+					td2.appendChild(document.createElement('br'));
+					td2.appendChild(document.createTextNode('￥' + price));
+					td2.setAttribute('onmouseover', 'mouseover(' + id + ')');
+					td2.setAttribute('onmouseout', 'mouseout(' + id + ')');
+					td2.className = 'td2';
+							 
+					var td3 = document.createElement('TD');
+					var button = document.createElement('button');
+					button.innerHTML = '×';
+					button.className = 'btn-danger'; 
+					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
+					td3.appendChild(button);
+					td3.className = 'td3';
+							 
+					// var form = document.createElement('input');
+					// form.type = "hidden";
+					// form.name = "favorite[]";
+					// form.value = id;
+							 
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tbody.appendChild(tr);
+					// tbody.appendChild(form);
+							 
+					objBody.appendChild(table);	 
+				}
+			}
+					
+			function mouseover(id) {
+				L.DomUtil.addClass( shopMarkers[id]._icon, 'leaflet-marker-icon-color-pink' );
+			}
+					
+			function mouseout(id) {
+				L.DomUtil.removeClass( shopMarkers[id]._icon, 'leaflet-marker-icon-color-pink' );
+			}
 			
 		</script>
+		@endif
+		
+		@if(!empty($restaurants) && $restaurants == true)
+		<script>
+			var bounce = { bounceOnAdd:true };
+			"<?php $jsonRestaurants = json_encode($restaurants); ?>"
+			var restaurantData = JSON.parse(`<?php echo  $jsonRestaurants; ?>`);
+			console.log(restaurantData);
+			
+			var restaurantMarkers = {};
+			for (var j = 0; j < restaurantData.length; j++) {
+				var restaurantInfo = restaurantData[j];
+				restaurantMarkers[restaurantInfo.id] = L.marker([restaurantInfo.lat, restaurantInfo.lng], bounce)
+				.bindPopup(
+					"<h4>" + restaurantInfo.name + "</h4>"
+					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + restaurantInfo.id + '"><img class="itemPic" src="FOODS FOLDER/' + restaurantInfo.image_path + '"></button>'
+					+ "<p>Tel: " + restaurantInfo.tel + "</p>"
+					+ "<p>Opening Hours: " + restaurantInfo.openinghours + "</p>"
+					+ "<p>" + restaurantInfo.address + "</p>"
+					// + '<span>distance from your location: </span>'
+					// + distance
+					// + '<span>m</span>'
+					)
+				.addTo(map);
+				restaurantMarkers[restaurantInfo.id].on('mouseover', function (e) {
+					this.openPopup();
+				});
+				console.log(restaurantMarkers);
+				// var lat1 = information.lat;
+				// var lng1 = information.lng;
+				// console.log(information.id);
+				// console.log(information.lat);
+				// console.log(lat1);
+				// console.log(information.lng);
+				// console.log(lng1);
+				
+					
+				// var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
+				// var latDiff = Math.abs(lat1 - currentLat);
+				// var lngDiff = Math.abs(lng1 - currentLng);
+					 
+				// // 緯度1度辺りの距離（km）
+				// var lat1d = (er * 2 * Math.PI) / 360;
+				// // 緯度の2地点間の距離（km）
+				// var a2 = latDiff * lat1d;
+					 
+				// // 現在位置の緯度を基準とした半径（km）
+				// var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
+				// // 経度1度辺りの距離（km）
+				// var lng1d = (latr * 2 * Math.PI) / 360;
+				// // 経度の2地点間の距離（km）
+				// var b2 = lngDiff * lng1d;
+				
+				// // 直角二等辺三角形の斜辺として距離（km）を算出
+				// var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
+
+			}
+			
+			function addElement(name, image, id, openinghours) {
+				if (document.getElementById('table' + id) === null) {
+					var objBody = document.getElementById("sidebar");
+						 
+					var table = document.createElement('TABLE');
+					table.id = 'table' + id;
+					table.className = 'sidetable';
+							 
+					var tbody = document.createElement('TBODY');
+					table.appendChild(tbody);
+							 
+					var tr = document.createElement('TR');
+							 
+					var td1 = document.createElement('TD');
+					var DOM_img = document.createElement('img');
+					DOM_img.src = 'FOODS FOLDER/' + image;
+					DOM_img.className = 'sideImg';
+					td1.appendChild(DOM_img);
+					td1.setAttribute('onmouseover', 'mouseover(' + id + ')');
+					td1.setAttribute('onmouseout', 'mouseout(' + id + ')');
+					td1.className = 'td1';
+							 
+					var td2 = document.createElement('TD');
+					td2.appendChild(document.createTextNode(name));
+					td2.appendChild(document.createElement('br'));
+					td2.appendChild(document.createTextNode(openinghours));
+					td2.setAttribute('onmouseover', 'mouseover(' + id + ')');
+					td2.setAttribute('onmouseout', 'mouseout(' + id + ')');
+					td2.className = 'td2';
+							 
+					var td3 = document.createElement('TD');
+					var button = document.createElement('button');
+					button.innerHTML = '×';
+					button.className = 'btn-danger';
+					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
+					td3.appendChild(button);
+					td3.className = 'td3';
+
+					// var form = document.createElement('input');
+					// form.type = "hidden";
+					// form.name = "favorite[]";
+					// form.value = id;
+							 
+					tr.appendChild(td1);
+					tr.appendChild(td2);
+					tr.appendChild(td3);
+					tbody.appendChild(tr);
+					// tbody.appendChild(form);
+							 
+					objBody.appendChild(table);	 
+				}
+						
+				
+			}
+					
+			function mouseover(id) {
+				L.DomUtil.addClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-pink');
+			}
+					
+			function mouseout(id) {
+				L.DomUtil.removeClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-pink');
+			}
+			
+		</script>
+		@endif
 		
 	</body>
 </html>

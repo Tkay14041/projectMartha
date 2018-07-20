@@ -15,7 +15,7 @@
 						<div id="slider-range"></div>
 					  </div>
                       <div class="form-group">
-                      	<p>Sex</p>
+                      	<p>Gender</p>
                       		{!! Form::radio('sex[]','W') !!}
 							{!! Form::label('sex[]','womens') !!}
 							{!! Form::radio('sex[]','M') !!}
@@ -63,7 +63,7 @@
 					  		{!! Form::radio('color[]','ゴールド') !!}
 					  		{!! Form::label('color[]','gold') !!}
 					  		{!! Form::radio('color[]','ブラウン') !!}
-					  		{!! Form::label('color[]','braun') !!}
+					  		{!! Form::label('color[]','brown') !!}
 					  		{!! Form::radio('color[]','柄物') !!}
 					  		{!! Form::label('color[]','gara') !!}
 					  		{!! Form::radio('color[]','グレー') !!}
@@ -79,8 +79,8 @@
 							{!! Form::label('scene[]','casual') !!}
 							{!! Form::radio('scene[]','デート') !!}
 					  		{!! Form::label('scene[]','date') !!}
-					  		{!! Form::radio('scene[]','結婚式') !!}
-					  		{!! Form::label('scene[]','wedding') !!}
+					  		{!! Form::radio('scene[]','スポーツ') !!}
+					  		{!! Form::label('scene[]','sports') !!}
 					  		{!! Form::radio('scene[]','ビーチ') !!}
 					  		{!! Form::label('scene[]','beach') !!}
 					  </div>
