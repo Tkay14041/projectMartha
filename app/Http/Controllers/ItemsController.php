@@ -155,7 +155,7 @@ class ItemsController extends Controller
         
         //Achtung! Config muss geändert werden, von "strinct => true" zu "strict => false" in mysql in config/database.php
         
-        $query = Item::select('*', \DB::raw('COUNT(*) as count'))->join('shops', 'items.shop_id', '=', 'shops.id')->groupBy(\DB::raw('shop_id'));
+        $query = Item::select('*')->join('shops', 'items.shop_id', '=', 'shops.id');
        
         //search by price
         $query->where('price', '>=', $minPrice);
@@ -318,10 +318,10 @@ class ItemsController extends Controller
             ]);
     }
     
-    function favorite(Request $request)
-    {
-        $favorites = $request->input('favorite');
-        $data = [];
-        var_dump($favorites);
-    }
+    // function favorite(Request $request)
+    // {
+    //     $favorites = $request->input('favorite');
+    //     $data = [];
+    //     var_dump($favorites);
+    // }
 }

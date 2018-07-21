@@ -502,7 +502,7 @@
 					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + shopInfo.id + '"><img class="itemPic" src="ITEM FOLDER/' + shopInfo.image_path + '"></button>'
 					+ "<h4>" + shopInfo.item_name + "</h2>"
 					+ "<h4>¥" + shopInfo.price + "</h4>"
-					+ '<h5>hit items:' + shopInfo.count + '</h5>'
+					// + '<h5>hit items:' + shopInfo.count + '</h5>'
 					// + '<span>distance from your location: </span>'
 					// + distance
 					// + '<span>m</span>'
