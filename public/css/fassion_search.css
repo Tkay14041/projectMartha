@@ -1,0 +1,206 @@
+@charset "utf-8";
+
+.form-group{
+    margin-bottom: 0px
+}
+
+input[type=radio] {
+	display: none; 
+}
+
+.Genderdiv input[type="radio"]:checked + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Gender{
+	display: inline-block;		/* ブロックレベル要素化する */ 
+	margin: 5px;		/* ボックス外側の余白を指定する */
+	width: 100px;		/* ボックスの横幅を指定する */
+	padding-left: 5px;	/* ボックス内左側の余白を指定する */
+	padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+	color: #006DD9;		/* フォントの色を指定 */
+	text-align: center;	/* テキストのセンタリングを指定する */
+	vertical-align: middle;
+	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+	border-radius: 5px;	/* 角丸を指定する */
+}
+
+#Gender{
+    margin-top:15px;
+    margin-bottom: 0px;
+    font-weight:700;
+    margin-right:250px;
+}
+
+.Genrediv input[type="radio"]:checked + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Genre{
+	display: inline-block;		/* ブロックレベル要素化する */ 
+	margin: 5px;		/* ボックス外側の余白を指定する */
+	width: 100px;		/* ボックスの横幅を指定する */
+	padding-left: 5px;	/* ボックス内左側の余白を指定する */
+	padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+	color: #006DD9;		/* フォントの色を指定 */
+	text-align: center;	/* テキストのセンタリングを指定する */
+	vertical-align: middle;
+	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+	border-radius: 5px;	/* 角丸を指定する */
+}
+
+#Genre{
+    margin-top:10px;
+    margin-bottom: 0px;
+    font-weight:700;
+    margin-right:250px;
+}
+
+
+.Colordiv input[type="radio"]:checked + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Color{
+	display: inline-block;		/* ブロックレベル要素化する */ 
+	margin: 5px;		/* ボックス外側の余白を指定する */
+	width: 100px;		/* ボックスの横幅を指定する */
+	padding-left: 5px;	/* ボックス内左側の余白を指定する */
+	padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+	color: #006DD9;		/* フォントの色を指定 */
+	text-align: center;	/* テキストのセンタリングを指定する */
+	vertical-align: middle;
+	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+	border-radius: 5px;	/* 角丸を指定する */
+}
+
+#Color{
+    margin-top:10px;
+    margin-bottom: 0px;
+    font-weight:700;
+    margin-right:250px;
+}
+
+
+
+#reddiv input[type="radio"]:checked + label {
+    background-color:rgba(255,0,0,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid red;
+}
+
+#redball{
+	color:red;
+}
+
+#blackdiv input[type="radio"]:checked + label {
+    background-color:rgba(0,0,0,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid black;
+}
+
+#whitediv input[type="radio"]:checked + label {
+    background-color:rgba(255,255,255,10);
+	color: black; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid black;
+}
+
+#beigediv input[type="radio"]:checked + label {
+    background-color:rgba(245,245,220,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid beige;
+}
+
+#navydiv input[type="radio"]:checked + label {
+    background-color:rgba(0,0,128,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid navy;
+}
+
+#greendiv input[type="radio"]:checked + label {
+    background-color:rgba(0,128,0,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid green;
+}
+
+#bluediv input[type="radio"]:checked + label {
+    background-color:rgba(0,0,255,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid blue;
+}
+
+#yellowdiv input[type="radio"]:checked + label {
+    background-color:rgba(255,255,0,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,255,0,10);
+}
+
+#pinkdiv input[type="radio"]:checked + label {
+    background-color:rgba(255,192,203,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,192,203,10);
+}
+
+
+#golddiv input[type="radio"]:checked + label {
+    background-color:rgba(255,215,0,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,215,0,10);
+}
+
+#browndiv input[type="radio"]:checked + label {
+    background-color:rgba(165,42,42,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(165,42,42,10);
+}
+
+#silverdiv input[type="radio"]:checked + label {
+    background-color:rgba(192,192,192,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(192,192,192,10)
+}
+
+#graydiv input[type="radio"]:checked + label {
+    background-color:rgba(128,128,128,10);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(128,128,128,10)
+}
+
+#garadiv input[type="radio"]:checked + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+
+
+.Scenediv input[type="radio"]:checked + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Scene{
+	display: inline-block;		/* ブロックレベル要素化する */ 
+	margin: 5px;		/* ボックス外側の余白を指定する */
+	width: 100px;		/* ボックスの横幅を指定する */
+	padding-left: 5px;	/* ボックス内左側の余白を指定する */
+	padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+	color: #006DD9;		/* フォントの色を指定 */
+	text-align: center;	/* テキストのセンタリングを指定する */
+	vertical-align: middle;
+	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
+	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+	border-radius: 5px;	/* 角丸を指定する */
+}
+
+#Scene{
+    margin-top:10px;
+    margin-bottom:0px;
+    font-weight:700;
+    margin-right:250px;
+}

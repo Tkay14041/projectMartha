@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Martha</title>
+        
+        
+		<link rel="stylesheet" href="css/fassion_search.css" />
 		
 		<!--bootstrap-->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,13 +55,67 @@
 			#map {
 				width: 100%;
 				height: 100vh;
-				float: left;
+				position: absolute;
 			}
 			
-			#sidebar {
+			.tab {
+				width: 4%;
+				min-width: 40px;
+				height: 100%;
+				background-color: #333;
+				position: relative;
+				z-index: 999;
+				display: block;
+				float: right;
+				text-align: center;
+				opacity: 0.7;
+			}
+			
+			.sidebar {
+				/*min-width: 200px;*/
+				height: 100%;
+				background-color: white;
+				position: relative;
+				z-index: 999;
+				display: block;
+				float: right;
+				padding: 0;
+				opacity: 0.9;
+			}
+			
+			.sidetitle {
+				color: white;
+				background-color: black;
+				margin: 0;
+				padding-top: 20px;
+				padding-left: 10px;
+			}
+			
+			.sidebutton{
+				width: 90%;
+				min-height: 40px;
+				margin-top: 20px;
+				margin-bottom: 10px;
+			}
+			
+			.sidebutton:hover {
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			
+			.sidebutton i{
 				width: 100%;
-				display: inline-block;
-				overflow: scroll;
+				height: 100%;
+				text-align: center;
+			}
+			
+			.sidebutton span {
+				color: white;
+			}
+			
+			.glyphicon {
+				font-size: 20px;
+				color: white;
 			}
 			
 			.sidetable {
@@ -124,137 +181,6 @@
 			    margin-left: 5%;
 			}
 			
-			/*
-			Copyright (c)  created year unknown, Robert Abba @robabba
-			Released under the MIT license
-			http://opensource.org/licenses/mit-license.php
-			*/
-			
-			body{
-				  min-height: 100vh;
-				  margin: 0 auto;
-				  background-color:#ffffff;
-				  z-index:500;
-				  overflow-x: hidden;
-				  overflow-y: hidden;
-				}
-				
-				.side-bar[data-position="left"]{
-				  position: absolute;
-				  top: 50%;
-				  left: 0;
-				  -webkit-transform: translateY(-50%);
-				  -ms-transform: translateY(-50%);
-				  transform: translateY(-50%);
-				  min-height: 100%;
-				  width: 64px;
-				  background-color: #43a;
-				  border-top-right-radius: 6px;
-				  border-bottom-right-radius: 6px;
-				  z-index:500;
-				}
-				
-				.side-bar[data-position="right"]{
-				  position: absolute;
-				  right: 400px;
-				  top: 50%;
-				  -webkit-transform: translateY(-50%);
-				  -ms-transform: translateY(-50%);
-				  transform: translateY(-50%);
-				  min-height: 100%;
-				  width: 64px;
-				  background-color: #333;
-				}
-				
-				div.item {
-				  color: white;
-				  height: 64px;
-				  width: 64px;
-				  background-color: #444;
-				  line-height: 64px;
-				  text-align: center;
-				  font-size: 20px;
-				}
-				
-				div.item.bottom {
-				  position: absolute;
-				  bottom: 10%;
-				}
-				
-				div.heading {
-				  font-size: 16px;
-				  font-family: 'Lato', sans-serif;
-				  color: white;
-				  height: 44px;
-				  line-height: 44px;
-				  font-weight: 700;
-				  padding: 10px;
-				  background-color: #333;
-				}
-				
-				div.item:hover {
-				  background-color: #6761A8 ;
-				  cursor: pointer;
-				}
-				
-				div.side-panel {
-				  z-index: 999;
-				  right: -400px;
-				  position: absolute;
-				  min-width: 400px;
-				  min-height: 100%;
-				  background-color: #fff;
-				  display: inline-block;
-				  width: 0;
-				}
-				
-				div.side-panel.open{
-				  animation-name: sidebar-open;
-				  animation-duration: .25s;
-				  right: 0;
-				}
-				
-				div.side-panel.close{
-				  animation-name: sidebar-close;
-				  animation-duration: .25s;
-				  right: -400px;
-				}
-				
-				.close {
-					opacity: 0.6;
-				}
-				
-				/* Keyframes */
-				@keyframes sidebar-open {
-				  0% {
-				    right: -400px;
-				  }
-				  
-				  100% {
-				    right: 0;
-				  }
-				}
-				
-				@keyframes sidebar-close {
-				  0% {
-				    right: 0;
-				  }
-				  
-				  100% {
-				    right: -400px;
-				  }
-				}
-				
-				/*img {*/
-				/*    width: 100%;*/
-				/*    position: absolute;*/
-				/*}*/
-				
-				.side-panel {
-				    z-index: 9999;
-				    position: relative;
-				}
-			
 		</style>
 		
 		<script>
@@ -294,31 +220,19 @@
 			    });
 			});
 			
-			//ここから、ポップサイドバーのジャバスクリプト
-	        let EventHandler = {
-			  ShowHideSideBar: function(){
-			    if (document.getElementById("side-panel").className.indexOf("open") !== -1){
-			      document.getElementById("side-panel").className = "side-panel"
-			      document.getElementById("side-panel").className += " close"
-			      document.getElementById('show_hide').childNodes[0].className = "fa fa-angle-double-left"
-			      return
-			    }
-			    
-			    document.getElementById("side-panel").className = "side-panel"
-			    document.getElementById("side-panel").className += " open"
-			    document.getElementById('show_hide').childNodes[0].className = "fa fa-angle-double-right"
-			  }
-			}
-			
-			window.onload = () => {
-			  document.getElementById('show_hide').onclick = EventHandler.ShowHideSideBar
-			}
-			//pop side bar java scriptおわり
-			
-			jQuery(function($) {
-				var boxHeight = $('#map').height();
-				$('#sidebar').css('height', boxHeight + 'px');
-			});
+			jQuery( function() {
+			    jQuery( '.show_hide' ) . click( function() {
+			        jQuery( ".sidebar" ) . animate( { width: 'toggle' }, 'fast' );
+			        var $show_hide = $(this);
+			        if ($show_hide.hasClass('open')) {
+			        	$show_hide.find('span').text('>>');
+			        	$show_hide.removeClass('open');
+			        } else {
+			        	$show_hide.find('span').text('<<');
+			        	$show_hide.addClass('open');
+			        }
+			    } );
+			} );
 			
 		</script>
 
@@ -327,54 +241,16 @@
 	<body>
 		<div id="map"></div>
 		
-		
-		
-		<!--
-		Copyright (c) created year unknown, Robert Abba @robabba
-		Released under the MIT license
-		http://opensource.org/licenses/mit-license.php
-		-->	
-
-		 <div class="side-panel" id="side-panel">
-		 	<div id="sidepanel-heading" class="heading">
-		    	<!--<link rel="stylesheet" href="index.css">-->
-		        <span id="content-heading">USER LIKES</span>
-		    </div>
-		            
-		  <!--<iframe id="content-frame" style="height: 90%; border:none; display: block; width: 400px; position: absolute;"> </iframe>-->
-		  
-		  <div id="sidebar">
-					<!--<div class=search>-->
-					<!--<button type="button" class="btn btn-default glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2"></button></div>-->
-		  
-		  <div data-position="right" class="side-bar">
-		    <div class="item" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2">F</i></div>
-		    <div class="item" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal3">R</i></div>
-		    <div class="item"><i class="fa fa-user"></i></div>
-		    <div class="item"><i class="fa fa-users"></i></div>
-		    <div class="item"><i class="fa fa-folder-o"></i></div>
-		    <div class="item"><i class="fa fa-file-code-o"></i></div>
-		
-		    <div class="item bottom" id="show_hide"><i class="fa fa-angle-double-left"></i></div>
-		  </div>
-		  <!--<script src="index.js"></script>-->
-		  
+		<div class="sidebar col-sm-3 col-xs-6">
+			<h4 class="sidetitle">USER LIKES</h4>
+			<div id="sidebar"></div>
 		</div>
+		<div class="tab">
+			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2">F</i></div>
+			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal3">R</i></div>
+			
+			<div class="sidebutton show_hide"><span>>></span></div>
 		</div>
-		            
-		
-		<!--<ここからポップアップサイドバーおわり>-->
-		
-		
-		
-		
-		
-		
-		
-		<!--<div id="sidebar"></div>-->
-		
-		<!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2">Fassion</button>-->
-		<!--<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3">Restaurant</button>-->
 		
 		<div class="modal fade" id="myModal2">
 		  <div class="modal-dialog">
