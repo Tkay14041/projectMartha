@@ -243,11 +243,22 @@
 		
 		<div class="sidebar col-sm-3 col-xs-6">
 			<h4 class="sidetitle">USER LIKES</h4>
-			<div id="sidebar"></div>
+			{!! Form::open(['route' => 'favorite.post', 'method' => 'post']) !!}
+				<div id="sidebar"></div>
+				{!! Form::submit('confirm', ['class' => 'btn btn-primary btn-block']) !!}
+			{!! Form::close() !!}
 		</div>
 		<div class="tab">
 			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2">F</i></div>
 			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal3">R</i></div>
+			@if (Auth::check())
+				<div button type="button"><i>{!! link_to_route('favorite.get', 'User') !!}</i></div>
+				<div button type="button"><i>{!! link_to_route('logout.get', 'Logout') !!}</i></div>
+			@else
+				<div>{!! link_to_route('register', 'Sign up') !!}</div>
+				<div>{!! link_to_route('login', 'login') !!}</div>
+			@endif
+			
 			
 			<div class="sidebutton show_hide"><span>>></span></div>
 		</div>
@@ -459,16 +470,16 @@
 					td3.appendChild(button);
 					td3.className = 'td3';
 							 
-					// var form = document.createElement('input');
-					// form.type = "hidden";
-					// form.name = "favorite[]";
-					// form.value = id;
+					var form = document.createElement('input');
+					form.type = "hidden";
+					form.name = "shopfavorite[]";
+					form.value = id;
 							 
 					tr.appendChild(td1);
 					tr.appendChild(td2);
 					tr.appendChild(td3);
 					tbody.appendChild(tr);
-					// tbody.appendChild(form);
+					tbody.appendChild(form);
 							 
 					objBody.appendChild(table);	 
 				}
@@ -581,16 +592,16 @@
 					td3.appendChild(button);
 					td3.className = 'td3';
 
-					// var form = document.createElement('input');
-					// form.type = "hidden";
-					// form.name = "favorite[]";
-					// form.value = id;
+					var form = document.createElement('input');
+					form.type = "hidden";
+					form.name = "foodfavorite[]";
+					form.value = id;
 							 
 					tr.appendChild(td1);
 					tr.appendChild(td2);
 					tr.appendChild(td3);
 					tbody.appendChild(tr);
-					// tbody.appendChild(form);
+					tbody.appendChild(form);
 							 
 					objBody.appendChild(table);	 
 				}

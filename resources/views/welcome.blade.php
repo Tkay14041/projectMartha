@@ -37,25 +37,7 @@
                 
         .main {background-color:#000;}
         
-        .viewa {
-            background: url("./images/img02.jpg")no-repeat center center fixed;
-            -webkit-background-size: cover;
-            width: 100%;
-            height: 100%;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-                }
-                
-        .viewb {
-            background: url("./images/img03.jpg")no-repeat center center fixed;
-            -webkit-background-size: cover;
-            width: 100%;
-            height: 100%;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-                }
+
                 
         .viewc {
             background: url("./images/back1.jpg")no-repeat center center fixed;
@@ -86,6 +68,35 @@
             -o-background-size: cover;
             background-size: cover;
                 }
+                
+        .viewx {
+            background: url("./images/mback2.jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            width: 100%;
+            height: 100%;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+                }
+                
+        .viewy {
+            background: url("./images/mback3.jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            width: 100%;
+            height: 100%;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+                }
+                
+        .viewz {
+            background: url("./images/mback1.jpg")no-repeat center center fixed;
+            -webkit-background-size: cover;
+            width: 100%;
+            height: 100%;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
                 
                 
         .blackeffect{ height:100%;
@@ -125,27 +136,7 @@
             <!--</div>-->
             
             <div id="loginform">
-                    <!--<form class="navbar-form navbar-left form-inline" role="search">-->
-                    <!--    <div class="form-group">-->
-                    <!--    <input type="text"  placeholder="User Name">-->
-                    <!--    </div>-->
-                    <!--    <div>　</div>-->
-                    <!--    <div class="form-group">-->
-                    <!--    <input type="text" placeholder="User Password">-->
-                    <!--    </div>-->
-                    <!--    <button type="submit" class="btn btn-default btn-sm">Login</button>-->
-                    <!--</form>-->
-                    {!! Form::open(['route' => 'signup.post']) !!}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name') !!}
-                            {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
-
-                            {!! Form::label('password', 'Password') !!}
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
-                        </div>
-        
-                        {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
-                    {!! Form::close() !!}
+                {!! link_to_route('map.get', 'Get Started') !!}
             </div>        
             
         </nav>
@@ -158,7 +149,7 @@
 <div class="main">
       <section class="section page1">    
         <!--/.slider-->
-        <div id="carouselMarthaIndicators" class="vh relative carousel slide carousel-fade" data-ride="carousel">
+        <div id="carouselMarthaIndicators" class="vh relative carousel slide carousel-fade pc" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
             <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -177,32 +168,13 @@
                             <h3 class="mb-0">SignUp</h3>
                         </div>
                         <div class="card-body">
-                            <!--<form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">-->
-                            <!--    <div class="form-group">-->
-                            <!--        <label for="uname1">Username</label>-->
-                            <!--        <input type="text" class="form-control form-control-sm rounded-10" name="uname1" id="uname1" required="" textarea-style>-->
-                            <!--    </div>-->
-                                <!--<div class="form-group">-->
-                                <!--    <label>Email</label>-->
-                                <!--    <input type="email" class="form-control form-control-sm rounded-10" id="em1" required="">-->
-                                <!--</div>-->
-                            <!--    <div class="form-group">-->
-                            <!--        <label>Password</label>-->
-                            <!--        <input type="password" class="form-control form-control-sm rounded-10" id="pwd1" required="">-->
-                            <!--    </div>-->
-                            <!--    <button type="submit" class="btn button" id="btnSignup">SignUp</button>-->
-                            <!--</form>-->
-                            {!! Form::open(['route' => 'login.post']) !!}
-                        <div class="form-group">
-                            {!! Form::label('name', 'Name') !!}
-                            {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
-
-                            {!! Form::label('password', 'Password') !!}
-                            {!! Form::password('password', ['class' => 'form-control']) !!}
+                            {!! link_to_route('register', 'Sign up now!', null, ['class' => 'btn btn-lg btn-default']) !!}
                         </div>
-        
-                        {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
-                    {!! Form::close() !!}
+                        <div class="card-header">
+                            <h3 class="mb-0">LogIn</h3>
+                        </div>
+                        <div class="card-body">
+                            {!! link_to_route('login', 'log in', null, ['class' => 'btn btn-lg btn-default']) !!}
                         </div>
                         <!--/card-block-->
                     </div>
@@ -242,6 +214,74 @@
     
 </section>    
 
+
+<div class="main">
+      <section class="section page1">    
+        <!--/.slider-->
+        <div id="carouselMarthaIndicators" class="vh relative carousel slide carousel-fade sp" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+            <div id="mainmartha" class="carousel-caption  d-none d-md-block">
+            <table><tr><td></td>
+                <td id="rogoandtext">
+                    <h1><img src="./images/rogo.png" id="Martha" class="animated fadeIn"></h1>
+                    <h4 id="mapandmore" class="animated fadeInUp">Map and More...</h4></td>
+                <td><img src="./images/longtoumei.png" id="toumei200"></td>
+            
+                <div class="fuckhonoka">
+                    <div class="card rounded-100 animated fadeIn" id="logincard" style="width:20%">
+                        <div class="card-header">
+                            <h3 class="mb-0">SignUp</h3>
+                        </div>
+                        <div class="card-body">
+                            {!! link_to_route('register', 'Sign up now!', null, ['class' => 'btn btn-lg btn-default']) !!}
+                        </div>
+                        <div class="card-header">
+                            <h3 class="mb-0">LogIn</h3>
+                        </div>
+                        <div class="card-body">
+                            {!! link_to_route('login', 'log in', null, ['class' => 'btn btn-lg btn-default']) !!}
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    </div>
+                    <!-- /form card signup -->
+            </tr></table>
+            </div>
+
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="viewx">
+                    <div class="blackeffect">
+                    <img src="./images/longtoumei.png" id="toumei100"></div>
+                    </div>
+                </div>
+                <div class="carousel-item viewy">
+                    <div class="blackeffect">
+                    <img src="./images/longtoumei.png" id="toumei100">
+                    </div>
+                </div>
+                <div class="carousel-item viewz">
+                    <div class="blackeffect">
+                    <img src="./images/longtoumei.png" id="toumei100">
+                    </div>
+                </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselMarthaIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselMarthaIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    <!--/.slider-->
+    
+</section>    
 
 
 

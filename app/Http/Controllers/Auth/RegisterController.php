@@ -31,7 +31,7 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+         * @return void
      */
     public function __construct()
     {
@@ -61,7 +61,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        exit;
         return User::create([
             'name' => $data['name'],
             // 'email' => $data['email'],
