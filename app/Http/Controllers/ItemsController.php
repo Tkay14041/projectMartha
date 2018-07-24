@@ -115,7 +115,7 @@ class ItemsController extends Controller
         $queryU->where('price', '>', 97500);
         $U = $queryU->get();
         
-        return view('layouts.app', [
+        return view('layouts.map', [
             'A' => $A,
             'B' => $B,
             'C' => $C,
@@ -291,7 +291,7 @@ class ItemsController extends Controller
         $U = $queryU->get();
         
         // $items = Item::select()->join('shops', 'items.shop_id', '=', 'shops.id')->get();
-        return view('layouts.app', [
+        return view('layouts.map', [
                 'items' => $items,
                 'shouhin' => $shouhin,
                 'A' => $A,

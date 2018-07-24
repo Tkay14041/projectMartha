@@ -11,14 +11,22 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', 'ItemsController@setting');
+Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+Route::post('login', 'Auth\LoginController@login')->name('login.post');
+
+
+Route::get('map', 'ItemsController@setting');
 
 Route::post('items', 'ItemsController@search')->name('items.search');
 Route::post('restautants', 'RestaurantsController@search')->name('restaurants.search');
 
 
 Route::post('favorite', 'ItemsController@favorite')->name('items.favorite');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
