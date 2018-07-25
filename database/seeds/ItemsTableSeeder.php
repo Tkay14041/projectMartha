@@ -3135,7 +3135,7 @@ class ItemsTableSeeder extends Seeder
                 'color' => 'ブルー',
                 'scene' => 'デート',
                 'item_name' => 'Trouser',
-                'image_path' => '90.Cjpg',
+                'image_path' => '90C.jpg',
             ),
             240 => 
             array (
