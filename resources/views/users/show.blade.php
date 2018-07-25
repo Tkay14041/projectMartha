@@ -198,19 +198,6 @@
 		    $( "#minPrice" ).val($( "#slider-range" ).slider( "values", 0 ));
 		    $( "#maxPrice" ).val($( "#slider-range" ).slider( "values", 1 ));
 		  });
-		  
-		 // if( navigator.geolocation )
-			// {
-			// 	// 現在位置を取得できる場合の処理
-			// 	alert( "あなたの端末では、現在位置を取得することができます。" ) ;
-			// }
-			
-			// // Geolocation APIに対応していない
-			// else
-			// {
-			// 	// 現在位置を取得できない場合の処理
-			// 	alert( "あなたの端末では、現在位置を取得できません。" ) ;
-			// }
 			
 			$(function() {
 			    $('#sidebar').sortable({
@@ -318,7 +305,7 @@
 				      	<p>{{ $item->description }}</p>
 				      	</div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 				       </div>
 				    </div>
 				  </div>
@@ -378,100 +365,13 @@
 					+ '<button type="button" class="btn btn-default" data-toggle="modal" data-target="#' + shopInfo.id + '"><img class="itemPic" src="ITEM FOLDER/' + shopInfo.image_path + '"></button>'
 					+ "<h4>" + shopInfo.item_name + "</h2>"
 					+ "<h4>¥" + shopInfo.price + "</h4>"
-					// + '<h5>hit items:' + shopInfo.count + '</h5>'
-					// + '<span>distance from your location: </span>'
-					// + distance
-					// + '<span>m</span>'
 					)
 				.addTo(map);
 				shopMarkers[shopInfo.id].on('mouseover', function (e) {
 					this.openPopup();
 				});
-				
-				// var lat1 = information.lat;
-				// var lng1 = information.lng;
-				// console.log(information.id);
-				// console.log(information.lat);
-				// console.log(lat1);
-				// console.log(information.lng);
-				// console.log(lng1);
-				
-					
-				// var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
-				// var latDiff = Math.abs(lat1 - currentLat);
-				// var lngDiff = Math.abs(lng1 - currentLng);
-					 
-				// // 緯度1度辺りの距離（km）
-				// var lat1d = (er * 2 * Math.PI) / 360;
-				// // 緯度の2地点間の距離（km）
-				// var a2 = latDiff * lat1d;
-					 
-				// // 現在位置の緯度を基準とした半径（km）
-				// var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
-				// // 経度1度辺りの距離（km）
-				// var lng1d = (latr * 2 * Math.PI) / 360;
-				// // 経度の2地点間の距離（km）
-				// var b2 = lngDiff * lng1d;
-				
-				// // 直角二等辺三角形の斜辺として距離（km）を算出
-				// var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
 
-			}
-			
-			function addElement(shopname, image, id, openinghours, price) {
-				if (document.getElementById('table' + id) === null) {
-						
-					var objBody = document.getElementById("sidebar");
-							 
-					var table = document.createElement('TABLE');
-					table.id = 'table' + id;
-					table.className = 'sidetable';
-							 
-					var tbody = document.createElement('TBODY');
-					table.appendChild(tbody);
-							 
-					var tr = document.createElement('TR');
-							 
-					var td1 = document.createElement('TD');
-					var DOM_img = document.createElement('img');
-					DOM_img.src = 'ITEM FOLDER/' + image;
-					DOM_img.className = 'sideImg';
-					td1.appendChild(DOM_img);
-					td1.setAttribute('onmouseover', 'mouseover(' + id + ')');
-					td1.setAttribute('onmouseout', 'mouseout(' + id + ')');
-					td1.className = 'td1';
-							 
-					var td2 = document.createElement('TD');
-					td2.appendChild(document.createTextNode(shopname));
-					td2.appendChild(document.createElement('br'));
-					td2.appendChild(document.createTextNode(openinghours));
-					td2.appendChild(document.createElement('br'));
-					td2.appendChild(document.createTextNode('￥' + price));
-					td2.setAttribute('onmouseover', 'mouseover(' + id + ')');
-					td2.setAttribute('onmouseout', 'mouseout(' + id + ')');
-					td2.className = 'td2';
-							 
-					var td3 = document.createElement('TD');
-					var button = document.createElement('button');
-					button.innerHTML = '×';
-					button.className = 'btn-danger'; 
-					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
-					td3.appendChild(button);
-					td3.className = 'td3';
-							 
-					// var form = document.createElement('input');
-					// form.type = "hidden";
-					// form.name = "favorite[]";
-					// form.value = id;
-							 
-					tr.appendChild(td1);
-					tr.appendChild(td2);
-					tr.appendChild(td3);
-					tbody.appendChild(tr);
-					// tbody.appendChild(form);
-							 
-					objBody.appendChild(table);	 
-				}
+
 			}
 					
 			function mouseover(id) {
@@ -502,102 +402,15 @@
 					+ "<p>Tel: " + restaurantInfo.tel + "</p>"
 					+ "<p>Opening Hours: " + restaurantInfo.openinghours + "</p>"
 					+ "<p>" + restaurantInfo.address + "</p>"
-					// + '<span>distance from your location: </span>'
-					// + distance
-					// + '<span>m</span>'
 					)
 				.addTo(map);
 				restaurantMarkers[restaurantInfo.id].on('mouseover', function (e) {
 					this.openPopup();
 				});
-				console.log(restaurantMarkers);
-				// var lat1 = information.lat;
-				// var lng1 = information.lng;
-				// console.log(information.id);
-				// console.log(information.lat);
-				// console.log(lat1);
-				// console.log(information.lng);
-				// console.log(lng1);
-				
-					
-				// var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
-				// var latDiff = Math.abs(lat1 - currentLat);
-				// var lngDiff = Math.abs(lng1 - currentLng);
-					 
-				// // 緯度1度辺りの距離（km）
-				// var lat1d = (er * 2 * Math.PI) / 360;
-				// // 緯度の2地点間の距離（km）
-				// var a2 = latDiff * lat1d;
-					 
-				// // 現在位置の緯度を基準とした半径（km）
-				// var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
-				// // 経度1度辺りの距離（km）
-				// var lng1d = (latr * 2 * Math.PI) / 360;
-				// // 経度の2地点間の距離（km）
-				// var b2 = lngDiff * lng1d;
-				
-				// // 直角二等辺三角形の斜辺として距離（km）を算出
-				// var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
 
 			}
 			
-			function addElement(name, image, id, openinghours, tel) {
-				if (document.getElementById('table' + id) === null) {
-					var objBody = document.getElementById("sidebar");
-						 
-					var table = document.createElement('TABLE');
-					table.id = 'table' + id;
-					table.className = 'sidetable';
-							 
-					var tbody = document.createElement('TBODY');
-					table.appendChild(tbody);
-							 
-					var tr = document.createElement('TR');
-							 
-					var td1 = document.createElement('TD');
-					var DOM_img = document.createElement('img');
-					DOM_img.src = 'FOODS FOLDER/' + image;
-					DOM_img.className = 'sideImg';
-					td1.appendChild(DOM_img);
-					td1.setAttribute('onmouseover', 'mouseover(' + id + ')');
-					td1.setAttribute('onmouseout', 'mouseout(' + id + ')');
-					td1.className = 'td1';
-							 
-					var td2 = document.createElement('TD');
-					td2.appendChild(document.createTextNode(name));
-					td2.appendChild(document.createElement('br'));
-					td2.appendChild(document.createTextNode(tel));
-					td2.appendChild(document.createElement('br'));
-					td2.appendChild(document.createTextNode(openinghours));
-					td2.setAttribute('onmouseover', 'mouseover(' + id + ')');
-					td2.setAttribute('onmouseout', 'mouseout(' + id + ')');
-					td2.className = 'td2';
-							 
-					var td3 = document.createElement('TD');
-					var button = document.createElement('button');
-					button.innerHTML = '×';
-					button.className = 'btn-danger';
-					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
-					td3.appendChild(button);
-					td3.className = 'td3';
-
-					// var form = document.createElement('input');
-					// form.type = "hidden";
-					// form.name = "favorite[]";
-					// form.value = id;
-							 
-					tr.appendChild(td1);
-					tr.appendChild(td2);
-					tr.appendChild(td3);
-					tbody.appendChild(tr);
-					// tbody.appendChild(form);
-							 
-					objBody.appendChild(table);	 
-				}
-						
-				
-			}
-					
+			
 			function mouseover(id) {
 				L.DomUtil.addClass(restaurantMarkers[id]._icon, 'leaflet-marker-icon-color-red');
 			}
