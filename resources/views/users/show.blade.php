@@ -74,30 +74,20 @@
 			.sidebar {
 				/*min-width: 200px;*/
 				height: 100%;
-				background-color: white;
 				position: relative;
 				z-index: 999;
 				display: block;
 				float: right;
 				padding: 0;
-				opacity: 0.9;
-				overflow: auto;
+			    background-color:rgba(0,0,0,0.9);
+			    overflow: auto;
 			}
 			
 			#sidebar {
-				margin-top:40px;
+				margin-top: 40px;
 			}
 			
-			.sidetitle {
-				width: 100%;
-				height: 40px;
-				color: white;
-				background-color: black;
-				margin: 0;
-				padding-top: 20px;
-				padding-left: 10px;
-				position: fixed;
-			}
+
 			
 			.sidebutton{
 				width: 90%;
@@ -130,23 +120,11 @@
 				width: 100%;
 			}
 			
-			.sideImg {
-				height: 160px;
+			.modal-header {
+				padding-bottom:0px;
+
 			}
-			
-			.td1 {
-				width: 160px;
-				text-align: center;
-			}
-			
-			.td2 {
-				width: 180px;
-			}
-			
-			.td3 {
-				width: 24px;
-			}
-			
+
 			.ui-state-default{
 				width:100%;
 				height:auto;
@@ -160,20 +138,28 @@
 			.leaflet-marker-icon-color-alua   { -webkit-filter: hue-rotate(330deg); filter: hue-rotate(330deg); }
 			
 			.leaflet-popup-content-wrapper {
-				width: 268px;
-				opacity: 0.95;
+				width: 230px;
+				text-align:center;
+    			background-color:rgba(255,255,255,0.9);
+    			font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
 			}
 			
 			label {
 				width: 170px;
 			}
 			
-			.itemPic {
-				width: 200px;
+			.leaflet-popup{			
+			webkit-transition: 20s ease-in-out;
+		    -moz-transition: 20s ease-in-out;
+		    -o-transition: 20s ease-in-out;
+		    transition: 20s ease-in-out;
+		    -webkit-transform: scale(1);
+			transform: scale(1);
 			}
 			
-			.stocks {
-				width: 200px;
+			.leaflet-popup :hover{
+			webkit-transform: scale(1.0001);
+			transform: scale(1.0001)
 			}
 			
 			.stockItem {
@@ -187,6 +173,11 @@
 			#slider-range {
 				width: 94%;
 			    margin-left: 5%;
+			}
+			
+			.btn-danger{
+				font-size:20px;
+				cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 			}
 			
 		</style>
@@ -257,7 +248,7 @@
 					<tbody onmouseover="mouseover({{ $item->id }})" onmouseout="mouseout({{ $item->id }})">
 						<tr class="trtop">
 							<td class="td1"><img src="ITEM FOLDER/{{ $item->image_path }}" class="sideImg"></td>
-							<td>
+							<td class="td2">
 								{{ $item->shopname }} <br>
 								{{ $item->openinghours }} <br>
 								￥{{ $item->price }} <br>
@@ -274,7 +265,7 @@
 					<tbody onmouseover="mouseover({{ $restaurant->id }})" onmouseout="mouseout({{ $restaurant->id }})">
 						<tr class="trtop">
 							<td class="td1"><img src="FOODS FOLDER/{{ $restaurant->image_path }}" class="sideImg"></td>
-							<td>
+							<td class="td2">
 								{{ $restaurant->name }} <br>
 								{{ $restaurant->tel }} <br>
 								{{ $restaurant->openinghours }} <br>
@@ -306,7 +297,7 @@
 				<!-- モーダルウィンドウの中身 -->
 				<div class="modal fade" id="<?php echo $item->id ?>">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content" id="fassion-modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title">
@@ -345,7 +336,7 @@
 				<!-- モーダルウィンドウの中身 -->
 				<div class="modal fade" id="<?php echo $restaurant->id ?>">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content" id="items-modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title">
@@ -358,10 +349,9 @@
 				      			<p>{{ $menu->meal }}<span>￥{{ $menu->price }}</span></p>
 				      		@endif
 				      	@endforeach
-				      	<button onclick="addElement('<?php echo $restaurant->name ?>', '<?php echo $restaurant->image_path ?>', '<?php echo $restaurant->id ?>', '<?php echo $restaurant->openinghours ?>', '<?php echo $restaurant->tel ?>')">Like</button>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 				       </div>
 				    </div>
 				  </div>

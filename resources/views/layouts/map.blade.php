@@ -342,7 +342,7 @@
 				<!-- モーダルウィンドウの中身 -->
 				<div class="modal fade" id="<?php echo $restaurant->id ?>">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content" id="items-modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title">
@@ -358,7 +358,7 @@
 				      	<button onclick="addElement('<?php echo $restaurant->name ?>', '<?php echo $restaurant->image_path ?>', '<?php echo $restaurant->id ?>', '<?php echo $restaurant->openinghours ?>', '<?php echo $restaurant->tel ?>')">Like</button>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 				       </div>
 				    </div>
 				  </div>
