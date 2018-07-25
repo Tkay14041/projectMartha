@@ -81,14 +81,22 @@
 				float: right;
 				padding: 0;
 				opacity: 0.9;
+				overflow: auto;
+			}
+			
+			#sidebar {
+				margin-top:40px;
 			}
 			
 			.sidetitle {
+				width: 100%;
+				height: 40px;
 				color: white;
 				background-color: black;
 				margin: 0;
 				padding-top: 20px;
 				padding-left: 10px;
+				position: fixed;
 			}
 			
 			.sidebutton{
@@ -240,14 +248,49 @@
     
 	<body>
 		<div id="map"></div>
-		
 		<div class="sidebar col-sm-3 col-xs-6">
 			<h4 class="sidetitle">USER LIKES</h4>
-			<div id="sidebar"></div>
+			<div id="sidebar">
+				@if(!empty($items))
+				@foreach($items as $item)
+				<table class="sidetable" id="table{{ $item->id }}" >
+					<tbody onmouseover="mouseover({{ $item->id }})" onmouseout="mouseout({{ $item->id }})">
+						<tr class="trtop">
+							<td class="td1"><img src="ITEM FOLDER/{{ $item->image_path }}" class="sideImg"></td>
+							<td>
+								{{ $item->shopname }} <br>
+								{{ $item->openinghours }} <br>
+								￥{{ $item->price }} <br>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				@endforeach
+				@endif
+				
+				@if(!empty($restaurants))
+				@foreach($restaurants as $restaurant)
+				<table class="sidetable" id="table{{ $restaurant->id }}" >
+					<tbody onmouseover="mouseover({{ $restaurant->id }})" onmouseout="mouseout({{ $restaurant->id }})">
+						<tr class="trtop">
+							<td class="td1"><img src="FOODS FOLDER/{{ $restaurant->image_path }}" class="sideImg"></td>
+							<td>
+								{{ $restaurant->name }} <br>
+								{{ $restaurant->tel }} <br>
+								{{ $restaurant->openinghours }} <br>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				@endforeach
+				@endif
+			</div>
 		</div>
 		<div class="tab">
 			<div button type="button"><i>{!! link_to_route('map.get', 'Back') !!}</i></div>
+			@if(Auth::check())
 			<div button type="button"><i>{!! link_to_route('logout.get', 'Logout') !!}</i></div>
+			@endif
 			
 			
 			
@@ -271,7 +314,7 @@
 					        </h4>
 				      </div>
 				      <div class="modal-body">
-				      	@foreach($shouhin as $sina)
+						@foreach($shouhin as $sina)
 					      	@if($item->shop_id == $sina->shop_id)
 					      		<div class="stockItem">
 						      		<img class="stocks" src="ITEM FOLDER/<?php echo $sina->image_path ?>">
@@ -282,8 +325,7 @@
 				      	<p>{{ $item->address }}</p>
 				      	<p>Tel: {{ $item->tel }}</p>
 				      	<p>{{ $item->description }}</p>
-				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $item->price ?>')">Like</button>
-				      </div>
+				      	</div>
 				      <div class="modal-footer">
 				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
 				       </div>
@@ -330,12 +372,12 @@
 			@endforeach
 		@endif
 		
-		@if(!empty($items) && $items == true || !empty($restaurants) && $restaurants == true)
+		@if(!empty($items) && $items == true)
 		<script>
 			var bounce = { bounceOnAdd:true };
 			"<?php $jsonItems = json_encode($items); ?>"
 			var shopData = JSON.parse(`<?php echo  $jsonItems; ?>`);
-			// console.log(data);
+			console.log(shopData);
 			
 			var shopMarkers = {};
 			for (var i = 0; i < shopData.length; i++) {
@@ -449,8 +491,12 @@
 			function mouseout(id) {
 				L.DomUtil.removeClass( shopMarkers[id]._icon, 'leaflet-marker-icon-color-pink' );
 			}
-			
-			
+		</script>
+		@endif
+		
+		@if(!empty($restaurants) && $restaurants == true)
+		<script>
+			var bounce = { bounceOnAdd:true };
 			//restaurant
 			"<?php $jsonRestaurants = json_encode($restaurants); ?>"
 			var restaurantData = JSON.parse(`<?php echo  $jsonRestaurants; ?>`);

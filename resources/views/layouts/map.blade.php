@@ -74,22 +74,20 @@
 			.sidebar {
 				/*min-width: 200px;*/
 				height: 100%;
-				background-color: white;
 				position: relative;
 				z-index: 999;
 				display: block;
 				float: right;
 				padding: 0;
-				opacity: 0.9;
+			    background-color:rgba(0,0,0,0.9);
+			    overflow: auto;
 			}
 			
-			.sidetitle {
-				color: white;
-				background-color: black;
-				margin: 0;
-				padding-top: 20px;
-				padding-left: 10px;
+			#sidebar {
+				margin-top: 40px;
 			}
+			
+
 			
 			.sidebutton{
 				width: 90%;
@@ -122,23 +120,11 @@
 				width: 100%;
 			}
 			
-			.sideImg {
-				height: 160px;
+			.modal-header {
+				padding-bottom:0px;
+
 			}
-			
-			.td1 {
-				width: 160px;
-				text-align: center;
-			}
-			
-			.td2 {
-				width: 180px;
-			}
-			
-			.td3 {
-				width: 24px;
-			}
-			
+
 			.ui-state-default{
 				width:100%;
 				height:auto;
@@ -152,20 +138,28 @@
 			.leaflet-marker-icon-color-alua   { -webkit-filter: hue-rotate(330deg); filter: hue-rotate(330deg); }
 			
 			.leaflet-popup-content-wrapper {
-				width: 268px;
-				opacity: 0.95;
+				width: 230px;
+				text-align:center;
+    			background-color:rgba(255,255,255,0.9);
+    			font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
 			}
 			
 			label {
 				width: 170px;
 			}
 			
-			.itemPic {
-				width: 200px;
+			.leaflet-popup{			
+			webkit-transition: 20s ease-in-out;
+		    -moz-transition: 20s ease-in-out;
+		    -o-transition: 20s ease-in-out;
+		    transition: 20s ease-in-out;
+		    -webkit-transform: scale(1);
+			transform: scale(1);
 			}
 			
-			.stocks {
-				width: 200px;
+			.leaflet-popup :hover{
+			webkit-transform: scale(1.0001);
+			transform: scale(1.0001)
 			}
 			
 			.stockItem {
@@ -179,6 +173,11 @@
 			#slider-range {
 				width: 94%;
 			    margin-left: 5%;
+			}
+			
+			.btn-danger{
+				font-size:20px;
+				cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 			}
 			
 		</style>
@@ -265,10 +264,10 @@
 		
 		<div class="modal fade" id="myModal2">
 		  <div class="modal-dialog">
-		    <div class="modal-content">
+		    <div class="modal-content" id="fassion-modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Fassion</h4>
+		        <h4 class="modal-title">Fashion</h4>
 		      </div>
 		      <div class="modal-body">
 		      	
@@ -304,7 +303,7 @@
 				<!-- モーダルウィンドウの中身 -->
 				<div class="modal fade" id="<?php echo $item->id ?>">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content" id="items-modal-content">
 				      <div class="modal-header">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					        <h4 class="modal-title">
@@ -315,7 +314,7 @@
 				      	@foreach($shouhin as $sina)
 					      	@if($item->shop_id == $sina->shop_id)
 					      		<div class="stockItem">
-						      		<img class="stocks" src="ITEM FOLDER/<?php echo $sina->image_path ?>">
+					      			<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $sina->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $sina->price ?>')"><img class="stocks" src="ITEM FOLDER/<?php echo $sina->image_path ?>"></button>
 						      		<p>￥{{ $sina->price }}</p>
 					      		</div>
 					      	@endif
@@ -323,16 +322,15 @@
 				      	<p>{{ $item->address }}</p>
 				      	<p>Tel: {{ $item->tel }}</p>
 				      	<p>{{ $item->description }}</p>
-				      	<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $item->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $item->price ?>')">Like</button>
+				      	
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">閉じる</button>
+				        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 				       </div>
 				    </div>
 				  </div>
 				</div>
 				<script>
-					
 				</script>
 			@endforeach
 		@endif
@@ -398,59 +396,36 @@
 				shopMarkers[shopInfo.id].on('mouseover', function (e) {
 					this.openPopup();
 				});
-				
-				// var lat1 = information.lat;
-				// var lng1 = information.lng;
-				// console.log(information.id);
-				// console.log(information.lat);
-				// console.log(lat1);
-				// console.log(information.lng);
-				// console.log(lng1);
-				
-					
-				// var er = 6378.137; // 地球の赤道半径（km）、極半径は6356.752(km)
-				// var latDiff = Math.abs(lat1 - currentLat);
-				// var lngDiff = Math.abs(lng1 - currentLng);
-					 
-				// // 緯度1度辺りの距離（km）
-				// var lat1d = (er * 2 * Math.PI) / 360;
-				// // 緯度の2地点間の距離（km）
-				// var a2 = latDiff * lat1d;
-					 
-				// // 現在位置の緯度を基準とした半径（km）
-				// var latr = Math.cos(Math.abs(lng1) / 180 * Math.PI) * er;
-				// // 経度1度辺りの距離（km）
-				// var lng1d = (latr * 2 * Math.PI) / 360;
-				// // 経度の2地点間の距離（km）
-				// var b2 = lngDiff * lng1d;
-				
-				// // 直角二等辺三角形の斜辺として距離（km）を算出
-				// var distance = Math.round(Math.sqrt(Math.pow(a2, 2) + Math.pow(b2, 2)) * 1000);
 
 			}
 			
 			function addElement(shopname, image, id, openinghours, price) {
+				
 				if (document.getElementById('table' + id) === null) {
 						
 					var objBody = document.getElementById("sidebar");
 							 
 					var table = document.createElement('TABLE');
 					table.id = 'table' + id;
+					
 					table.className = 'sidetable';
 							 
 					var tbody = document.createElement('TBODY');
 					table.appendChild(tbody);
 							 
 					var tr = document.createElement('TR');
+					tr.className = 'trtop';
 							 
 					var td1 = document.createElement('TD');
 					var DOM_img = document.createElement('img');
 					DOM_img.src = 'ITEM FOLDER/' + image;
 					DOM_img.className = 'sideImg';
+					DOM_img.id = 'img' + image;
 					td1.appendChild(DOM_img);
 					td1.setAttribute('onmouseover', 'mouseover(' + id + ')');
 					td1.setAttribute('onmouseout', 'mouseout(' + id + ')');
 					td1.className = 'td1';
+					td1.id = 'img' + id;
 							 
 					var td2 = document.createElement('TD');
 					td2.appendChild(document.createTextNode(shopname));
@@ -463,17 +438,17 @@
 					td2.className = 'td2';
 							 
 					var td3 = document.createElement('TD');
-					var button = document.createElement('button');
+					var button = document.createElement('span');
 					button.innerHTML = '×';
 					button.className = 'btn-danger'; 
-					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
+					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id + ")");
 					td3.appendChild(button);
 					td3.className = 'td3';
 							 
 					var form = document.createElement('input');
 					form.type = "hidden";
 					form.name = "shopfavorite[]";
-					form.value = id;
+					form.value = image;
 							 
 					tr.appendChild(td1);
 					tr.appendChild(td2);
@@ -482,6 +457,9 @@
 					tbody.appendChild(form);
 							 
 					objBody.appendChild(table);	 
+					
+				} else {
+					alert("You've already liked the shop.");
 				}
 			}
 					
@@ -492,6 +470,8 @@
 			function mouseout(id) {
 				L.DomUtil.removeClass( shopMarkers[id]._icon, 'leaflet-marker-icon-color-pink' );
 			}
+			
+
 			
 		</script>
 		@endif
@@ -585,9 +565,9 @@
 					td2.className = 'td2';
 							 
 					var td3 = document.createElement('TD');
-					var button = document.createElement('button');
+					var button = document.createElement('span');
 					button.innerHTML = '×';
-					button.className = 'btn-danger';
+					button.className = 'btn-danger close_button';
 					button.setAttribute('onclick', "document.getElementById('sidebar').removeChild(table" + id +")");
 					td3.appendChild(button);
 					td3.className = 'td3';
@@ -619,6 +599,6 @@
 			
 		</script>
 		@endif
-		
+
 	</body>
 </html>

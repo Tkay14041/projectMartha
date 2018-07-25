@@ -1,17 +1,77 @@
-@charset "utf-8";
-
-.form-group{
-    margin-bottom: 0px
+body{
+	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
 }
+
+.modal-title{
+    font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+    text-align:center;
+    font-weight:200;
+	font-size:24px;	
+}
+
+#fashionmozi{/*各テキストにanimationを設定*/
+  color: transparent;/*テキストを透明にしてtext-shadowだけ表示する*/
+  animation: blur 3s ease-out infinite;
+}
+ 
+#fashionmozi:nth-child(1) {/*一文字ずつ遅延させる*/
+  animation-delay: 0.1s;
+}
+#fashionmozi:nth-child(2) {
+  animation-delay: 20s;
+}
+#fashionmozi:nth-child(3) {
+  animation-delay: 30s;
+}
+#fashionmozi:nth-child(4) {
+  animation-delay: 40s;
+}
+#fashionmozi:nth-child(5) {
+  animation-delay: 50s;
+}
+#fashionmozi:nth-child(6) {
+  animation-delay: 60s;
+}
+#fashionmozi:nth-child(7) {
+  animation-delay: 70s;
+}
+ 
+@keyframes blur {/*opacityとtext-shadow+animationでフェードインを表現する*/
+  0%    {text-shadow:  0 0 100px #000000; opacity:0;}
+  5%    {text-shadow:  0 0 90px #000000;}
+  15%    {opacity: 1;}
+  20%    {text-shadow:  0 0 0px #000000;}
+  80%    {text-shadow:  0 0 0px #000000;}
+  85%    {opacity: 1;}
+  95%    {text-shadow:  0 0 90px #000000;}
+  100%  {text-shadow:  0 0 100px #000000; opacity:0;}
+}
+
 
 input[type=radio] {
 	display: none; 
 }
 
+
 .Genderdiv input[type="radio"]:checked + label {
 	background: #31A9EE;/* マウス選択時の背景色を指定する */
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
 }
+
+.Genderdiv input[type="radio"]:hover + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	opacity:0.6;
+	webkit-transform: scale(1.1);
+	transform: scale(1.1)
+}
+
+
+
+
+
+
+
 
 .Gender{
 	display: inline-block;		/* ブロックレベル要素化する */ 
@@ -25,10 +85,16 @@ input[type=radio] {
 	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
 	border-radius: 5px;	/* 角丸を指定する */
+	webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 #Gender{
-    margin-top:15px;
+    margin-top:0px;
     margin-bottom: 0px;
     font-weight:700;
     margin-right:250px;
@@ -37,6 +103,14 @@ input[type=radio] {
 .Genrediv input[type="radio"]:checked + label {
 	background: #31A9EE;/* マウス選択時の背景色を指定する */
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Genrediv input[type="radio"]:hover + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	opacity:0.6;
+	webkit-transform: scale(1.1);
+	transform: scale(1.1)
 }
 
 .Genre{
@@ -51,6 +125,12 @@ input[type=radio] {
 	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
 	border-radius: 5px;	/* 角丸を指定する */
+	webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 #Genre{
@@ -66,6 +146,14 @@ input[type=radio] {
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
 }
 
+.Colordiv input[type="radio"]:hover + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	opacity:0.6;
+	webkit-transform: scale(1.1);
+	transform: scale(1.1)
+}
+
 .Color{
 	display: inline-block;		/* ブロックレベル要素化する */ 
 	margin: 5px;		/* ボックス外側の余白を指定する */
@@ -78,6 +166,12 @@ input[type=radio] {
 	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
 	border-radius: 5px;	/* 角丸を指定する */
+	webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 #Color{
@@ -90,91 +184,174 @@ input[type=radio] {
 
 
 #reddiv input[type="radio"]:checked + label {
-    background-color:rgba(255,0,0,10);
+    background-color:rgba(255,0,0,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid red;
+	border: 2px solid rgba(255,0,0,0.7);
 }
 
-#redball{
-	color:red;
+#reddiv input[type="radio"]:hover + label {
+    background-color:rgba(255,0,0,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,0,0,0.5);
 }
 
 #blackdiv input[type="radio"]:checked + label {
-    background-color:rgba(0,0,0,10);
+    background-color:rgba(0,0,0,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid black;
+	border: 2px solid rgba(0,0,0,0.7);
+}
+
+#blackdiv input[type="radio"]:hover + label {
+    background-color:rgba(0,0,0,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,0,0,0.5);
 }
 
 #whitediv input[type="radio"]:checked + label {
-    background-color:rgba(255,255,255,10);
+    background-color:rgba(255,255,255,0.7);
 	color: black; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid black;
+	border: 2px solid rgba(0,0,0,0.7);
+}
+
+#whitediv input[type="radio"]:hover + label {
+    background-color:rgba(255,255,255,0.5);
+	color: black; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,0,0,0.5);
 }
 
 #beigediv input[type="radio"]:checked + label {
-    background-color:rgba(245,245,220,10);
+    background-color:rgba(216,209,173,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid beige;
+	border: 2px solid rgba(216,209,173,0.7);
 }
 
-#navydiv input[type="radio"]:checked + label {
-    background-color:rgba(0,0,128,10);
+#beigediv input[type="radio"]:hover + label {
+    background-color:rgba(216,209,173,0.5);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid navy;
+	border: 2px solid rgba(216,209,173,0.5);
+}
+
+
+#navydiv input[type="radio"]:checked + label {
+    background-color:rgba(0,0,128,0.7);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,0,128,0.7);
+}
+
+#navydiv input[type="radio"]:hover + label {
+    background-color:rgba(0,0,128,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,0,128,0.5);
+}
+
+#greendiv input[type="radio"]:hover + label {
+    background-color:rgba(0,128,0,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,128,0,0.5);
 }
 
 #greendiv input[type="radio"]:checked + label {
-    background-color:rgba(0,128,0,10);
+    background-color:rgba(0,128,0,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid green;
+	border: 2px solid rgba(0,128,0,0.7);
 }
 
 #bluediv input[type="radio"]:checked + label {
-    background-color:rgba(0,0,255,10);
+    background-color:rgba(0,0,255,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid blue;
+	border: 2px solid rgba(0,0,255,0.7);
+}
+
+#bluediv input[type="radio"]:hover + label {
+    background-color:rgba(0,0,255,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(0,0,255,0.5);
 }
 
 #yellowdiv input[type="radio"]:checked + label {
-    background-color:rgba(255,255,0,10);
+    background-color:rgba(255,255,0,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(255,255,0,10);
+	border: 2px solid rgba(255,255,0,0.7);
 }
+
+#yellowdiv input[type="radio"]:hover + label {
+    background-color:rgba(255,255,0,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,255,0,0.5);
+}
+
 
 #pinkdiv input[type="radio"]:checked + label {
-    background-color:rgba(255,192,203,10);
+    background-color:rgba(255,192,203,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(255,192,203,10);
+	border: 2px solid rgba(255,192,203,0.7);
 }
 
+#pinkdiv input[type="radio"]:hover + label {
+    background-color:rgba(255,192,203,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,192,203,0.5);
+}
 
 #golddiv input[type="radio"]:checked + label {
-    background-color:rgba(255,215,0,10);
+    background-color:rgba(255,215,0,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(255,215,0,10);
+	border: 2px solid rgba(255,215,0,0.7);
+}
+
+#golddiv input[type="radio"]:hover + label {
+    background-color:rgba(255,215,0,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(255,215,0,0.5);
 }
 
 #browndiv input[type="radio"]:checked + label {
-    background-color:rgba(165,42,42,10);
+    background-color:rgba(165,42,42,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(165,42,42,10);
+	border: 2px solid rgba(165,42,42,0.7);
+}
+
+#browndiv input[type="radio"]:hover + label {
+    background-color:rgba(165,42,42,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(165,42,42,0.5);
 }
 
 #silverdiv input[type="radio"]:checked + label {
-    background-color:rgba(192,192,192,10);
+    background-color:rgba(192,192,192,0.7);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(192,192,192,10)
+	border: 2px solid rgba(192,192,192,0.7)
 }
 
-#graydiv input[type="radio"]:checked + label {
-    background-color:rgba(128,128,128,10);
+#silverdiv input[type="radio"]:hover + label {
+    background-color:rgba(192,192,192,0.5);
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
-	border: 2px solid rgba(128,128,128,10)
+	border: 2px solid rgba(192,192,192,0.5)
 }
+
+
+#graydiv input[type="radio"]:checked + label {
+    background-color:rgba(128,128,128,0.7);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(128,128,128,0.7)
+}
+
+#graydiv input[type="radio"]:hover + label {
+    background-color:rgba(128,128,128,0.5);
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	border: 2px solid rgba(128,128,128,0.5)
+}
+
 
 #garadiv input[type="radio"]:checked + label {
 	background: #31A9EE;/* マウス選択時の背景色を指定する */
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+#garadiv input[type="radio"]:hover + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	opacity:0.6;
 }
 
 
@@ -182,6 +359,14 @@ input[type=radio] {
 .Scenediv input[type="radio"]:checked + label {
 	background: #31A9EE;/* マウス選択時の背景色を指定する */
 	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+}
+
+.Scenediv input[type="radio"]:hover + label {
+	background: #31A9EE;/* マウス選択時の背景色を指定する */
+	color: #ffffff; 	/* マウス選択時のフォント色を指定する */
+	opacity:0.6;
+	webkit-transform: scale(1.1);
+	transform: scale(1.1)	
 }
 
 .Scene{
@@ -196,6 +381,12 @@ input[type=radio] {
 	cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 	border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
 	border-radius: 5px;	/* 角丸を指定する */
+	webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+	transform: scale(1);
 }
 
 #Scene{
@@ -204,3 +395,152 @@ input[type=radio] {
     font-weight:700;
     margin-right:250px;
 }
+
+#restaurantalign{
+	text-align:center;
+	margin-bottom: 10px;
+}
+.fashionsearch{
+	text-align:center;
+	margin-bottom:0px;
+}
+.fashionsearch2{
+	margin-top:0px;
+	text-align:center;
+}
+
+
+
+#marginbottom15px{
+	margin-bottom:15px;
+}
+
+
+#kara{
+	display: inline-block;		/* ブロックレベル要素化する */ 
+	margin: 5px;		/* ボックス外側の余白を指定する */
+	width: 100px;		/* ボックスの横幅を指定する */
+	padding-left: 5px;	/* ボックス内左側の余白を指定する */
+	padding-right: 5px;	/* ボックス内御右側の余白を指定する */
+	color: transparent;		/* フォントの色を指定 */
+	text-align: center;	/* テキストのセンタリングを指定する */
+	vertical-align: middle;
+	border: 2px solid transparent;/* ボックスの境界線を実線で指定する */
+	border-radius: 5px;	/* 角丸を指定する */
+}
+
+#slider-range {
+	width:65%;
+	margin:auto;
+	background-color:red;
+}
+
+input{
+	width:70px;
+		background-color:transparent;
+}
+
+#pricezone{
+	text-align:center;
+	font-size:16px;
+}
+
+#pricemarginbottom{
+	margin-bottom:0px;
+}
+
+#fassion-modal-content{
+	background-color:rgba(256,256,256,0.85);
+    animation: fadeIn 2s ease 0s 1 normal;
+    width:80%;
+    height:70%;
+}
+
+input #minPrice{
+	background-color:rgba(128,128,128,10);
+}
+
+#items-modal-content{
+	background-color:rgba(256,256,256,0.85);
+	width:75%;
+	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+}
+
+.trtop{
+	border-top:0.5px solid black;
+	border-bottom:0.5px solid black;
+}
+
+.sideImg {
+	max-height: 100px;
+	width:100px;
+	margin:2px;
+}
+
+.td1 {
+	width: 100px;
+	background-color:rgba(255,255,255,1);
+	text-align:center;
+}
+
+.td2 {
+	padding-left:10px;
+	width: 180px;
+    background-color:rgba(255,255,255,0.7);
+}
+
+.td3 {
+	width: 50px;
+	margin-right:15px;
+    background-color:rgba(255,255,255,0.7);	
+}
+
+.itemPic {
+
+	height:150px;
+	max-width:150px;
+}
+
+.stocks {
+	width: 100%;
+	height:100%;
+	max-width:150px;
+	max-height:150px;
+}
+
+.td2{
+   	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+	font-weight:400;
+	font-size:18px;
+	max-width:160px;
+}
+
+.btn-danger{
+	border-radius: 5px;	/* 角丸を指定する */
+	webkit-transition: 0.2s ease-in-out;
+    -moz-transition: 0.2s ease-in-out;
+    -o-transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+		
+}
+
+.btn-danger:hover{
+	webkit-transform: scale(1.1);
+	transform: scale(1.1)	
+}
+
+.sidetitle {
+	color: white;
+	background-color:rgba(0,0,0,0.8);
+	margin: 0;
+	width: 100%;
+	padding-top: 10px;
+	padding-left: 10px;
+	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+	font-weight:200;
+	font-size:24px;	
+	position: fixed;
+}
+

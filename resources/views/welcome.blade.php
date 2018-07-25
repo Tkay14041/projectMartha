@@ -20,6 +20,7 @@
     
     
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.onepage-scroll.js"></script>
     <link href='onepage-scroll.css' rel='stylesheet' type='text/css'>
 
@@ -97,11 +98,19 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
+        }
                 
-                
-        .blackeffect{ height:100%;
-         width:100%;
-         background-size: cover;}
+        .blackeffect { 
+            height:100%;
+             width:100%;
+             background-size: cover;
+        }
+        
+        #loginform {
+            position: absolute;
+            right: 40px;
+        }
+ 
     </style>
 
 </head>
@@ -110,7 +119,7 @@
     <!--Navbar-->
         <nav class="navbar navbar-dark  navbar-expand-sm navbar-right   fixed-top  scrolling-navbar">
             <div id="Martharogomigini">
-            <a class="navbar-brand" href="#"><img src="./images/rogo.png" id="navbar-title"></img></a></div>
+            <a class="navbar-brand" href="/"><img src="./images/rogo.png" id="navbar-title"></img></a></div>
             <!--<div id='navinside' class="container">-->
             <!--    <a class="navbar-brand" href="#"><img src="./images/rogo.png" id="navbar-title"></img></a>-->
                 <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
@@ -136,9 +145,25 @@
             <!--</div>-->
             
             <div id="loginform">
-                {!! link_to_route('map.get', 'Get Started') !!}
-            </div>        
+                {!! link_to_route('map.get', 'Get Started', null, ['class' => 'btn btn-lg btn-default']) !!}
+            </div>      
             
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        	    <ul class="nav navbar-nav">
+        	        <li>{!! link_to_route('login', 'log in', null, ['class' => 'btn btn-lg btn-default']) !!}</li>
+        	        <li>{!! link_to_route('register', 'Register', null, ['class' => 'btn btn-lg btn-default']) !!}</li>
+        	    </ul>
+        	</div>
         </nav>
     <!--/.Navbar-->
     
@@ -225,29 +250,13 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
             <div id="mainmartha" class="carousel-caption  d-none d-md-block">
-            <table><tr><td></td>
+            <table><tr>
                 <td id="rogoandtext">
                     <h1><img src="./images/rogo.png" id="Martha" class="animated fadeIn"></h1>
                     <h4 id="mapandmore" class="animated fadeInUp">Map and More...</h4></td>
                 <td><img src="./images/longtoumei.png" id="toumei200"></td>
             
-                <div class="fuckhonoka">
-                    <div class="card rounded-100 animated fadeIn" id="logincard" style="width:20%">
-                        <div class="card-header">
-                            <h3 class="mb-0">SignUp</h3>
-                        </div>
-                        <div class="card-body">
-                            {!! link_to_route('register', 'Sign up now!', null, ['class' => 'btn btn-lg btn-default']) !!}
-                        </div>
-                        <div class="card-header">
-                            <h3 class="mb-0">LogIn</h3>
-                        </div>
-                        <div class="card-body">
-                            {!! link_to_route('login', 'log in', null, ['class' => 'btn btn-lg btn-default']) !!}
-                        </div>
-                        <!--/card-block-->
-                    </div>
-                    </div>
+
                     <!-- /form card signup -->
             </tr></table>
             </div>
@@ -287,13 +296,13 @@
 
 
 <!--これ消すとなぜかバグる-->
-    <div id="contentzero">
-        <table>
-            <tr>
-                <td></td>
-            </tr>
-        </table>
-    </div>
+<!--    <div id="contentzero">-->
+<!--        <table>-->
+<!--            <tr>-->
+<!--                <td></td>-->
+<!--            </tr>-->
+<!--        </table>-->
+<!--    </div>-->
 <!--これ消すとなぜかバグる-->
 
 

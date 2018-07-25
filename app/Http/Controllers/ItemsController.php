@@ -175,7 +175,7 @@ class ItemsController extends Controller
         
         //search by color
         if($color != null) {
-            $query->where('color', '=', $color)->orWhere('color', '=', 'ALL');
+            $query->where('color', '=', $color);
         }
         
         //search by scene

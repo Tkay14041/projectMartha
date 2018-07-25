@@ -130,7 +130,7 @@ class RestaurantsController extends Controller
         $queryU->where('price', '>', 97500);
         $U = $queryU->get();
         
-        return view('layouts.app', [
+        return view('layouts.map', [
                 'restaurants' => $restaurants,
                 'menus' => $menus,
                 'A' => $A,
