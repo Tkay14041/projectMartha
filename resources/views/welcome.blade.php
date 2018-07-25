@@ -13,6 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
+                height: 100vh;
                 background-color:#333;
                 background-image:url("../images/back1.jpg");
                 background-size:cover;
@@ -191,9 +192,9 @@
                     <a href="{{ route('map.get') }}">Get Started</a>
                     
                 </div>
+                <div class="Shinsengumi">©Shinsengumi</div>
             </div>
         </div>
-        <div class="Shinsengumi">©Shinsengumi</div>
     </body>
     
 </html>
