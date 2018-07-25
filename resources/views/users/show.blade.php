@@ -229,7 +229,7 @@
 		<div class="sidebar col-sm-3 col-xs-6">
 			<h4 class="sidetitle">USER LIKES</h4>
 			<div id="sidebar">
-				@if(!empty($items))
+				@if(!empty($items) && $items == true)
 				@foreach($items as $item)
 				<table class="sidetable" id="table{{ $item->id }}" >
 					<tbody onmouseover="mouseover({{ $item->id }})" onmouseout="mouseout({{ $item->id }})">
@@ -246,7 +246,7 @@
 				@endforeach
 				@endif
 				
-				@if(!empty($restaurants))
+				@if(!empty($restaurants) && $restaurants == true)
 				@foreach($restaurants as $restaurant)
 				<table class="sidetable" id="table{{ $restaurant->id }}" >
 					<tbody onmouseover="mouseover({{ $restaurant->id }})" onmouseout="mouseout({{ $restaurant->id }})">
