@@ -265,9 +265,10 @@
 			</div>
 		</div>
 		<div class="tab">
-			<div button type="button"><i>{!! link_to_route('map.get', 'Back') !!}</i></div>
+			<div class="sidebutton" button type="button"><a class="glyphicon glyphicon-arrow-left" href="/map"></a></div>
 			@if(Auth::check())
-			<div button type="button"><i>{!! link_to_route('logout.get', 'Logout') !!}</i></div>
+			
+			<div class="sidebutton" button type="button"><a class="glyphicon glyphicon-log-out" href="/logout"></a></div>
 			@endif
 			
 			

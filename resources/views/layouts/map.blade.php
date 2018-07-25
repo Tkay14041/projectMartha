@@ -251,11 +251,11 @@
 			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal2">F</i></div>
 			<div class="sidebutton" button type="button"><i class="glyphicon glyphicon-search" data-toggle="modal" data-target="#myModal3">R</i></div>
 			@if (Auth::check())
-				<div button type="button"><i>{!! link_to_route('favorite.get', 'User') !!}</i></div>
-				<div button type="button"><i>{!! link_to_route('logout.get', 'Logout') !!}</i></div>
+				<div class="sidebutton" button type="button"><a href="/favorite" class="glyphicon glyphicon-user"></a></div>
+				<div class="sidebutton" button type="button"><a class="glyphicon glyphicon-log-out" href="/logout"></a></div>
 			@else
-				<div>{!! link_to_route('register', 'Sign up') !!}</div>
-				<div>{!! link_to_route('login', 'login') !!}</div>
+				<div class="sidebutton" button type="button"><a class="glyphicon glyphicon-log-in" href="/login"></a></div>
+				<div class="sidebutton" button type="button"><a class="glyphicon glyphicon-user" href="/register">+</a></div>
 			@endif
 			
 			
