@@ -180,6 +180,15 @@
 				cursor: pointer;	/* マウスカーソルの形（リンクカーソル）を指定する */
 			}
 			
+			.likebutton button {
+				float: right;
+			}
+			
+			.likebutton {
+				vertical-align:middle;
+			}
+		 
+			
 		</style>
 		
 		<script>
@@ -315,7 +324,14 @@
 					      	@if($item->shop_id == $sina->shop_id)
 					      		<div class="stockItem">
 					      			<button onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $sina->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $sina->price ?>')"><img class="stocks" src="ITEM FOLDER/<?php echo $sina->image_path ?>"></button>
-						      		<p>￥{{ $sina->price }}</p>
+					      			<div class="likebutton">
+					      				<table>
+					      				  <tr>
+					      				  	<td><span>￥{{ $sina->price }}</span></td>
+							      	        <td><button class="Color" onclick="addElement('<?php echo $item->shopname ?>', '<?php echo $sina->image_path ?>', '<?php echo $item->id ?>', '<?php echo $item->openinghours ?>', '<?php echo $sina->price ?>')">Like</button></td>
+							      	      </tr>
+							      	    </table>
+							      	</div>
 					      		</div>
 					      	@endif
 				      	@endforeach
